@@ -19,6 +19,9 @@ public class ProductDto {
 	
 	/** 售價呈現 */
 	private String salesPriceDisp;
+	
+	/** 圖檔名稱 */
+	private String imgName;
 
 	public String getProductId() {
 		return productId;
@@ -66,6 +69,14 @@ public class ProductDto {
 
 	public void setSalesPriceDisp(String salesPriceDisp) {
 		this.salesPriceDisp = salesPriceDisp;
+	}
+
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 	
 }

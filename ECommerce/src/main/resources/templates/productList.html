@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="org.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品列表</title>
+
+<!-- 引入 Bootstrap 的 CSS 文件 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<!-- 如果你需要使用 Bootstrap 的 JavaScript 组件，你也需要引入 Bootstrap 的 JavaScript 文件 -->
+<!-- 注意：在使用 Bootstrap 的 JavaScript 组件之前，确保引入了 jQuery 和 Popper.js -->
+<script src="/js/jquery-3.6.3.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h2>商品列表</h2>
+	<table class="table table-striped">
+	    <thead>
+	        <tr>
+	            <th width="10%">商品ID</th>
+	            <th width="30%">商品名稱</th>
+	            <th width="10%">品牌</th>
+	            <th width="20%">商品狀態</th>
+	            <th width="10%">定價</th>
+	            <th width="10%">售價</th>
+	            <th width="10%">操作</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="product : ${products}">
+ 	            <td th:text="${product.productId}"></td>
+	            <td th:text="${product.name}"></td>
+	            <td th:text="${product.brand}"></td>
+	            <td th:text="${product.statusDisp}"></td>
+	            <td th:text="${product.listPriceDisp}"></td>
+	            <td th:text="${product.salesPriceDisp}"></td>
+	            <td>明細 編輯 刪除</td>
+	        </tr>
+	    </tbody>
+    </table>
+</body>
+</html>

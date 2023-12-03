@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommerce.dao.ProductDao;
+import com.ecommerce.dao.ProductPriceDao;
 import com.ecommerce.dto.ProductDto;
 import com.ecommerce.entity.Product;
+import com.ecommerce.entity.ProductPrice;
 import com.ecommerce.service.ProductService;
 
 @Service
@@ -18,6 +21,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private ProductPriceDao productPriceDao;
 	
 	@Override
 	public List<ProductDto> getAllProducts() {
@@ -51,5 +57,36 @@ public class ProductServiceImpl implements ProductService {
 	private String toTwdAmountDisp(BigDecimal price) {
 		BigDecimal scaledPrice = price.setScale(0, RoundingMode.HALF_UP);
 		return scaledPrice.toString();
+	}
+
+	/**
+	 * 新增商品
+	 */
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void addProduct(ProductDto dto) {
+		Product product = convertDtoToProduct(dto);
+		productDao.save(product);
+		
+		/**
+		 *  在關聯當中，如果沒設定 @JoinColumn(insertable = false)，在save的過程，會一併insert ProductPrice
+		 *  問題出在ProductPrice的ProductKey是要等Product Insert完成之後才會返回的值
+		 *  所以拆成兩段，先完成Product的save之後，再將ProductKey取出回填ProductPrice
+		 */
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setProductKey(product.getProductKey());
+		productPrice.setListPrice(dto.getListPrice());
+		productPrice.setSalesPrice(dto.getSalesPrice());
+		productPriceDao.save(productPrice);
+	}
+	
+	private Product convertDtoToProduct(ProductDto dto) {
+		Product product = new Product();
+		product.setProductId(dto.getProductId());
+		product.setName(dto.getName());
+		product.setBrand(dto.getBrand());
+		product.setStatus(dto.getStatus());
+		product.setImgName(dto.getImgName());
+		return product;
 	}
 }

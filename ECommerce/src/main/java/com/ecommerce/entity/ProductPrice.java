@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -18,7 +16,6 @@ public class ProductPrice {
 	/** 鍵值 */
 	@Id
 	@Column(name = "PRODUCT_KEY")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long productKey;
 	
 	/** 定價 */
@@ -31,7 +28,7 @@ public class ProductPrice {
 	
 	/** 關聯鍵值 */
     @OneToOne
-    @JoinColumn(name = "PRODUCT_KEY")
+    @JoinColumn(name = "PRODUCT_KEY", insertable = false)
     private Product product;
 
 	public Long getProductKey() {

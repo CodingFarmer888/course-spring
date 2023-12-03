@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Add Product</h2>
+    <form action="" method="post">
+
+        <!-- 商品ID -->
+        <div class="form-group">
+            <label for="productId">商品ID</label>
+            <input type="text" class="form-control" id="productId" name="productId" required>
+        </div>
+
+        <!-- 商品名稱 -->
+        <div class="form-group">
+            <label for="name">商品名稱</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <!-- 品牌 -->
+        <div class="form-group">
+            <label for="brand">品牌</label>
+            <input type="text" class="form-control" id="brand" name="brand" required>
+        </div>
+
+        <!-- 商品狀態 -->
+        <div class="form-group">
+            <label for="status">商品狀態</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="1">上架</option>
+                <option value="0">下架</option>
+            </select>
+        </div>
+
+        <!-- 定價 -->
+        <div class="form-group">
+            <label for="listPrice">定價</label>
+            <input type="text" class="form-control" id="listPrice" name="listPrice" required>
+        </div>
+
+        <!-- 售價 -->
+        <div class="form-group">
+            <label for="salesPrice">售價</label>
+            <input type="text" class="form-control" id="salesPrice" name="salesPrice" required>
+        </div>
+
+        <!-- 圖檔名稱 -->
+        <div class="form-group">
+            <label for="imgName">圖檔名稱</label>
+            <input type="text" class="form-control" id="imgName" name="imgName" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">新增商品</button>
+    </form>
+</div>
+
+</body>
+</html>

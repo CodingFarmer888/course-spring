@@ -44,7 +44,7 @@ public class Product {
 	 * 但是實務上不會把Entity直接往前端傳，都會在包一層DTO
 	 */
 	// @JsonIgnore
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ProductPrice productPrice;
 
 	public Long getProductKey() {

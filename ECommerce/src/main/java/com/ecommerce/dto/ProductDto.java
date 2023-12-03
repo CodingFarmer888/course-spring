@@ -1,5 +1,7 @@
 package com.ecommerce.dto;
 
+import java.math.BigDecimal;
+
 public class ProductDto {
 
 	/** 商品ID */
@@ -12,10 +14,19 @@ public class ProductDto {
 	private String brand;
 	
 	/** 商品狀態(上下架) */
+	private Integer status;
+	
+	/** 商品狀態(上下架) */
 	private String statusDisp;
+	
+	/** 定價 */
+	private BigDecimal listPrice;
 	
 	/** 定價呈現 */
 	private String listPriceDisp;
+	
+	/** 售價 */
+	private BigDecimal salesPrice;
 	
 	/** 售價呈現 */
 	private String salesPriceDisp;
@@ -77,6 +88,30 @@ public class ProductDto {
 
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public BigDecimal getListPrice() {
+		return listPrice;
+	}
+
+	public void setListPrice(BigDecimal listPrice) {
+		this.listPrice = listPrice;
+	}
+
+	public BigDecimal getSalesPrice() {
+		return salesPrice;
+	}
+
+	public void setSalesPrice(BigDecimal salesPrice) {
+		this.salesPrice = salesPrice;
 	}
 	
 }

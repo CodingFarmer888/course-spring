@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "CUSTOMER")
-public class CustomerEntity {
+public class Customer {
 	
 	@Id
 	@Column(name = "CUSTOMER_KEY")

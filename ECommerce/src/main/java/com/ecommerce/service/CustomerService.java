@@ -1,10 +1,10 @@
 package com.ecommerce.service;
 
-import com.ecommerce.entity.CustomerEntity;
+import com.ecommerce.entity.Customer;
 
 public interface CustomerService {
 
-	public CustomerEntity findCustomerById(String customerId);
+	public Customer findCustomerById(String customerId);
 	
 	
 }

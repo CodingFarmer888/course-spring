@@ -13,22 +13,26 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT_PRICE")
-public class ProductPriceEntity {
+public class ProductPrice {
 
+	/** 鍵值 */
 	@Id
 	@Column(name = "PRODUCT_KEY")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long productKey;
 	
+	/** 定價 */
 	@Column(name = "LIST_PRICE")
 	private BigDecimal listPrice;
 
+	/** 售價 */
 	@Column(name = "SALES_PRICE")
 	private BigDecimal salesPrice;
 	
+	/** 關聯鍵值 */
     @OneToOne
     @JoinColumn(name = "PRODUCT_KEY")
-    private ProductEntity productEntity;
+    private Product product;
 
 	public Long getProductKey() {
 		return productKey;
@@ -54,13 +58,12 @@ public class ProductPriceEntity {
 		this.salesPrice = salesPrice;
 	}
 
-	public ProductEntity getProductEntity() {
-		return productEntity;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductEntity(ProductEntity productEntity) {
-		this.productEntity = productEntity;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
-	
-	
+
 }

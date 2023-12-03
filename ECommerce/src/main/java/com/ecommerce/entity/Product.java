@@ -1,7 +1,5 @@
 package com.ecommerce.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT")
-public class ProductEntity {
+public class Product {
 
 	/** 商品鍵值 */
 	@Id
@@ -38,9 +36,16 @@ public class ProductEntity {
 	@Column(name = "STATUS")
 	private Integer status;
 	
-	@JsonIgnore
-    @OneToOne(mappedBy = "productEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private ProductPriceEntity productPriceEntity;
+	@Column(name = "IMG_NAME")
+	private String imgName;
+	
+	/** 
+	 * 如果這個欄位往轉成JSON往前端傳，會因為雙向關聯在序列化的過程，造成無窮回圈，需要加入JsonIgnore
+	 * 但是實務上不會把Entity直接往前端傳，都會在包一層DTO
+	 */
+	// @JsonIgnore
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ProductPrice productPrice;
 
 	public Long getProductKey() {
 		return productKey;
@@ -82,12 +87,20 @@ public class ProductEntity {
 		this.status = status;
 	}
 
-	public ProductPriceEntity getProductPriceEntity() {
-		return productPriceEntity;
+	public String getImgName() {
+		return imgName;
 	}
 
-	public void setProductPriceEntity(ProductPriceEntity productPriceEntity) {
-		this.productPriceEntity = productPriceEntity;
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
-	
+
+	public ProductPrice getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(ProductPrice productPrice) {
+		this.productPrice = productPrice;
+	}
+
 }

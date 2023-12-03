@@ -2,9 +2,9 @@ package com.ecommerce.service;
 
 import java.util.List;
 
-import com.ecommerce.entity.ProductEntity;
+import com.ecommerce.dto.ProductDto;
 
 public interface ProductService {
 
-	public List<ProductEntity> getAllProducts();
+	public List<ProductDto> getAllProducts();
 }

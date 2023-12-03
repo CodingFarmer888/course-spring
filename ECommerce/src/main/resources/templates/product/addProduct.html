@@ -8,27 +8,23 @@
 
 <div class="container mt-4">
     <h2>Add Product</h2>
-    <form action="" method="post">
+      <form action="/product/add" method="post" enctype="multipart/form-data">
 
-        <!-- 商品ID -->
         <div class="form-group">
             <label for="productId">商品ID</label>
             <input type="text" class="form-control" id="productId" name="productId" required>
         </div>
 
-        <!-- 商品名稱 -->
         <div class="form-group">
             <label for="name">商品名稱</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
-        <!-- 品牌 -->
         <div class="form-group">
             <label for="brand">品牌</label>
             <input type="text" class="form-control" id="brand" name="brand" required>
         </div>
 
-        <!-- 商品狀態 -->
         <div class="form-group">
             <label for="status">商品狀態</label>
             <select class="form-control" id="status" name="status" required>
@@ -37,26 +33,30 @@
             </select>
         </div>
 
-        <!-- 定價 -->
         <div class="form-group">
             <label for="listPrice">定價</label>
             <input type="text" class="form-control" id="listPrice" name="listPrice" required>
         </div>
 
-        <!-- 售價 -->
+ 
         <div class="form-group">
             <label for="salesPrice">售價</label>
             <input type="text" class="form-control" id="salesPrice" name="salesPrice" required>
         </div>
 
-        <!-- 圖檔名稱 -->
         <div class="form-group">
             <label for="imgName">圖檔名稱</label>
             <input type="text" class="form-control" id="imgName" name="imgName" required>
         </div>
+        
+        <div>
+            <label for="file">選擇檔案</label>
+            <input type="file" id="file" name="imgFile" accept=".png, .jpg, .jpeg">
+        </div>
 
         <button type="submit" class="btn btn-primary">新增商品</button>
     </form>
+
 </div>
 
 </body>

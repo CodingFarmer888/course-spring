@@ -2,6 +2,8 @@ package com.ecommerce.dto;
 
 import java.math.BigDecimal;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDto {
 
 	/** 商品ID */
@@ -33,6 +35,9 @@ public class ProductDto {
 	
 	/** 圖檔名稱 */
 	private String imgName;
+	
+	/** 圖檔 */
+	private MultipartFile imgFile;
 
 	public String getProductId() {
 		return productId;
@@ -112,6 +117,14 @@ public class ProductDto {
 
 	public void setSalesPrice(BigDecimal salesPrice) {
 		this.salesPrice = salesPrice;
+	}
+
+	public MultipartFile getImgFile() {
+		return imgFile;
+	}
+
+	public void setImgFile(MultipartFile imgFile) {
+		this.imgFile = imgFile;
 	}
 	
 }

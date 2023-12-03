@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="org.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>商品新增成功</title>
 </head>
 <body>
 <h2>商品新增成功</h2>
+	<p th:text="${product.imgName}">${product.imgName}</p>
+	
+	<img alt="" th:src="@{/img/{imgName}(imgName=${product.imgName})}" />
+
 </body>
 </html>

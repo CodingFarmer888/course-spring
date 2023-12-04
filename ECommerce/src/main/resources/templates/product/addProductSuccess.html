@@ -6,9 +6,43 @@
 </head>
 <body>
 <h2>商品新增成功</h2>
-	<p th:text="${product.imgName}">${product.imgName}</p>
+
+<a href="/index.html">回首頁</a>
 	
-	<img alt="" th:src="@{/img/{imgName}(imgName=${product.imgName})}" />
+	<table>
+		<tr>
+			<td width="100px">商品ID</td>
+			<td th:text="${product.productId}"></td>
+		</tr>
+		<tr>
+			<td>商品名稱</td>
+			<td th:text="${product.name}"></td>
+		</tr>
+		<tr>
+			<td>品牌</td>
+			<td th:text="${product.brand}"></td>
+		</tr>
+
+		<tr>
+			<td>商品狀態</td>
+			<td th:text="${product.statusDisp}"></td>
+		</tr>
+		
+		<tr>
+			<td>定價</td>
+			<td th:text="${product.listPriceDisp}"></td>
+		</tr>
+		
+		<tr>
+			<td>售價</td>
+			<td th:text="${product.salesPriceDisp}"></td>
+		</tr>
+		
+		<tr>
+			<td>圖檔</td>
+			<td><img width="200" alt="Base64 Image" th:src="${product.imgBase64}" /></td>
+		</tr>
+	</table>
 
 </body>
 </html>

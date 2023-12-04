@@ -18,17 +18,19 @@
 	<table class="table table-striped">
 	    <thead>
 	        <tr>
+	        	<th width="10%">商品圖</th>
 	            <th width="10%">商品ID</th>
-	            <th width="30%">商品名稱</th>
+	            <th width="20%">商品名稱</th>
 	            <th width="10%">品牌</th>
-	            <th width="20%">商品狀態</th>
+	            <th width="10%">商品狀態</th>
 	            <th width="10%">定價</th>
 	            <th width="10%">售價</th>
-	            <th width="10%">操作</th>
+	            <th width="20%">操作</th>
 	        </tr>
 	    </thead>
 	    <tbody>
 	        <tr th:each="product : ${products}">
+	        	<td><img alt="" th:src="${product.imgBase64}" width="100"/></td>
  	            <td th:text="${product.productId}"></td>
 	            <td th:text="${product.name}"></td>
 	            <td th:text="${product.brand}"></td>

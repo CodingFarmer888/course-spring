@@ -6,4 +6,5 @@ import com.ecommerce.entity.Product;
 
 public interface ProductDao extends JpaRepository<Product, Long> {
 
+	public Product findByProductId(String productId);
 }

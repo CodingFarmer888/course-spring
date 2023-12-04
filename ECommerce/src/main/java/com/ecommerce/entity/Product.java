@@ -7,6 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -36,8 +37,9 @@ public class Product {
 	@Column(name = "STATUS")
 	private Integer status;
 	
-	@Column(name = "IMG_NAME")
-	private String imgName;
+    @Lob
+    @Column(name = "IMG_DATA")
+    private byte[] imageData;
 	
 	/** 
 	 * 如果這個欄位往轉成JSON往前端傳，會因為雙向關聯在序列化的過程，造成無窮回圈，需要加入JsonIgnore
@@ -87,20 +89,20 @@ public class Product {
 		this.status = status;
 	}
 
-	public String getImgName() {
-		return imgName;
-	}
-
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
-	}
-
 	public ProductPrice getProductPrice() {
 		return productPrice;
 	}
 
 	public void setProductPrice(ProductPrice productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public byte[] getImageData() {
+		return imageData;
+	}
+
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
 	}
 
 }

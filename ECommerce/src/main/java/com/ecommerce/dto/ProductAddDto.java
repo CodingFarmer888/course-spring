@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class ProductDto {
+public class ProductAddDto {
 
 	/** 商品ID */
 	private String productId;
@@ -18,26 +18,11 @@ public class ProductDto {
 	/** 商品狀態(上下架) */
 	private Integer status;
 	
-	/** 商品狀態(上下架) */
-	private String statusDisp;
-	
 	/** 定價 */
 	private BigDecimal listPrice;
 	
-	/** 定價呈現 */
-	private String listPriceDisp;
-	
 	/** 售價 */
 	private BigDecimal salesPrice;
-	
-	/** 售價呈現 */
-	private String salesPriceDisp;
-	
-	/** 圖檔byte[] */
-    private byte[] imageData;
-    
-    /** 圖檔byte[] */
-    private String imgBase64;
 	
 	/** 圖檔 */
 	private MultipartFile imgFile;
@@ -64,30 +49,6 @@ public class ProductDto {
 
 	public void setBrand(String brand) {
 		this.brand = brand;
-	}
-
-	public String getStatusDisp() {
-		return statusDisp;
-	}
-
-	public void setStatusDisp(String statusDisp) {
-		this.statusDisp = statusDisp;
-	}
-
-	public String getListPriceDisp() {
-		return listPriceDisp;
-	}
-
-	public void setListPriceDisp(String listPriceDisp) {
-		this.listPriceDisp = listPriceDisp;
-	}
-
-	public String getSalesPriceDisp() {
-		return salesPriceDisp;
-	}
-
-	public void setSalesPriceDisp(String salesPriceDisp) {
-		this.salesPriceDisp = salesPriceDisp;
 	}
 
 	public Integer getStatus() {
@@ -121,21 +82,4 @@ public class ProductDto {
 	public void setImgFile(MultipartFile imgFile) {
 		this.imgFile = imgFile;
 	}
-
-	public byte[] getImageData() {
-		return imageData;
-	}
-
-	public void setImageData(byte[] imageData) {
-		this.imageData = imageData;
-	}
-
-	public String getImgBase64() {
-		return imgBase64;
-	}
-
-	public void setImgBase64(String imgBase64) {
-		this.imgBase64 = imgBase64;
-	}
-	
 }

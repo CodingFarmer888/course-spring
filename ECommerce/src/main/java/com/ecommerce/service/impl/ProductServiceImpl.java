@@ -2,6 +2,7 @@ package com.ecommerce.service.impl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,10 @@ public class ProductServiceImpl implements ProductService {
 		dto.setStatusDisp(product.getStatus() == 1 ? "上架" : "下架");
 		dto.setListPriceDisp(toTwdAmountDisp(product.getProductPrice().getListPrice()));
 		dto.setSalesPriceDisp(toTwdAmountDisp(product.getProductPrice().getSalesPrice()));
+		// 將Bytep[]轉成Base64給頁面呈現
+		String base64Image = Base64.getEncoder().encodeToString(product.getImageData());
+		// 圖檔需要指定格式，這裡設定為jpg，如果有其他格式，需要另外指定
+		dto.setImgBase64("data:image/jpg;base64," + base64Image);
 		return dto;
 	}
 	
@@ -86,7 +91,13 @@ public class ProductServiceImpl implements ProductService {
 		product.setName(dto.getName());
 		product.setBrand(dto.getBrand());
 		product.setStatus(dto.getStatus());
-		product.setImgName(dto.getImgName());
+		product.setImageData(dto.getImageData());
 		return product;
+	}
+
+	@Override
+	public ProductDto getProductById(String productId) {
+		Product product = productDao.findByProductId(productId);
+		return convertToProductDto(product);
 	}
 }

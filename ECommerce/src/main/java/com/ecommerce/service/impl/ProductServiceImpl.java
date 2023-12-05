@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.dao.ProductPriceDao;
-import com.ecommerce.dto.ProductDto;
-import com.ecommerce.entity.Product;
-import com.ecommerce.entity.ProductPrice;
+import com.ecommerce.model.dto.ProductDto;
+import com.ecommerce.model.entity.Product;
+import com.ecommerce.model.entity.ProductPrice;
 import com.ecommerce.service.ProductService;
 
 @Service

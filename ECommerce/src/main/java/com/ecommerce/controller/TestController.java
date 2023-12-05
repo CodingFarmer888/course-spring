@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ecommerce.dto.ProductDto;
-import com.ecommerce.entity.Customer;
+import com.ecommerce.model.dto.ProductDto;
+import com.ecommerce.model.entity.Customer;
 import com.ecommerce.service.CustomerService;
 import com.ecommerce.service.ProductService;
 
@@ -35,8 +35,8 @@ public class TestController {
 	@Autowired
 	private ProductService productService;
 	
-	@Autowired
-	private ResourceLoader resourceLoader;
+//	@Autowired
+//	private ResourceLoader resourceLoader;
 	
 	@GetMapping(value = "/customer/{id}")
 	public void findCustomer(@PathVariable("id") String customerId) {

@@ -1,40 +1,19 @@
-package com.ecommerce.entity;
+package com.ecommerce.model.sessionbean;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-/**
- * 顧客基本資料
- */
-@Entity
-@Table(name = "CUSTOMER")
-public class Customer {
+public class LoginCustomer {
 	
-	@Id
-	@Column(name = "CUSTOMER_KEY")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long customerKey;
 	
-	@Column(name = "CUSTOMER_ID")
 	private String customerId;
-	
-	@Column(name = "PASSWORD")
+
 	private String password;
 	
-	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "NICKNAME")
 	private String nickname;
 	
-	@Column(name = "EMAIL")
 	private String email;
-	
-	@Column(name = "PHONE")
+
 	private String phone;
 
 	public Long getCustomerKey() {

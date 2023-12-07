@@ -1,9 +1,5 @@
 package com.ecommerce.controller;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +19,23 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ecommerce.model.dto.ProductDto;
+import com.ecommerce.model.vo.Cart;
+import com.ecommerce.model.vo.ProductItem;
+import com.ecommerce.model.vo.ProductLineItem;
 import com.ecommerce.service.ProductService;
 
 @RestController
-@RequestMapping(value = "/product")
-public class ProductMvcController {
+@RequestMapping(value = "/product2")
+public class ProductController {
 
 	@Value("${app.imgPath}")
 	private String imgPath;
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private Cart cart;
 
 	@GetMapping(value = "/all")
 	public ModelAndView allProducts() {
@@ -89,31 +91,33 @@ public class ProductMvcController {
 		return new ResponseEntity<>(headers, HttpStatus.FOUND);
 	}
 
-	@GetMapping("/showProductSuccessPage")
-	public ModelAndView showProductSuccessPage(@RequestParam("productId") String productId) {
-		ProductDto productDto = productService.getProductById(productId);
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/product/addProductSuccess");
-		mav.addObject("product", productDto);
-		return mav;
+	// TODO: 這個可以當回家練習
+	@GetMapping(value = "addToCart/{productId}/{qty}")
+	public ResponseEntity<Cart> addProductToCart(@PathVariable String productId, @PathVariable Integer qty) {
+		Cart cart = productService.addToCart(productId, qty);
+		return ResponseEntity.ok(cart);
+	}
+	
+	@GetMapping(value = "/cart")
+	public Cart getCart() {
+		Cart c = new Cart();
+		c.setProductLineItemList(cart.getProductLineItemList());
+		return c;
+	}
+	
+	@GetMapping(value = "/page/{pageNum}/size/{pageSize}")
+	public ResponseEntity<List<ProductDto>> getPageingProduct(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+		List<ProductDto> productList = productService.getProductWithPageable(pageNum, pageSize);
+		return ResponseEntity.ok(productList);
 	}
 	
 	@GetMapping(value = "/search")
-	public ModelAndView getPageProducts(
+	public ResponseEntity<List<ProductDto>>  getPageProducts(
 			@RequestParam(defaultValue = "0", required = false) Integer pageNum, 
-			@RequestParam(defaultValue = "3", required = false) Integer pageSize,
-			@RequestParam(defaultValue = "", required = false) String searchKeyword) {
-		List<ProductDto> allProducts = productService.searchProductsWithoutPages(searchKeyword);
-		List<ProductDto> productDtoList = productService.getSearchProducts(searchKeyword, pageNum, pageSize);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("productList");
-		// 將關鍵字往前端傳，顯示於搜尋框
-		mav.addObject("searchKeyword", searchKeyword);
-		mav.addObject("productCount", allProducts.size());
-		mav.addObject("pageCount", allProducts.size()/pageSize);
-		mav.addObject("products", productDtoList);
-		return mav;
+			@RequestParam(defaultValue = "5", required = false) Integer pageSize,
+			@RequestParam(required = false) String searchKeyword) {
+		List<ProductDto> productList = productService.getSearchProducts(searchKeyword, pageNum, pageSize);
+		return ResponseEntity.ok(productList);
 	}
 
 }

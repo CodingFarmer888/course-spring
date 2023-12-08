@@ -112,6 +112,7 @@ public class ProductMvcController {
 		mav.addObject("searchKeyword", searchKeyword);
 		mav.addObject("productCount", allProducts.size());
 		mav.addObject("pageCount", allProducts.size()/pageSize);
+		mav.addObject("currentPage", 2);
 		mav.addObject("products", productDtoList);
 		return mav;
 	}

@@ -164,4 +164,31 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> pageProduct = productDao.findByNameLike("%"+searchKeyword+"%");
 		return pageProduct.stream().map(p -> convertToProductDto(p)).collect(Collectors.toList());
 	}
+
+	/**
+	 * 更新商品資料
+	 */
+	@Override
+	public ProductDto updateProdcut(ProductDto productDto) {
+		Product product = updateProductTransaction(productDto);
+		return convertToProductDto(product);
+	}
+	
+	@Transactional(rollbackFor = { Exception.class })
+	private Product updateProductTransaction(ProductDto productDto) {
+		// 透過productId先把商品找出來
+		String productId = productDto.getProductId();
+		Product product = productDao.findByProductId(productId);
+		product.setName(productDto.getName());
+		product.setBrand(productDto.getBrand());
+		product.setBrand(productDto.getBrand());
+		product.setStatus(productDto.getStatus());
+		product.getProductPrice().setListPrice(productDto.getListPrice());
+		product.getProductPrice().setSalesPrice(productDto.getSalesPrice());
+		product.setImageData(productDto.getImageData());
+		// 不用save?
+		productDao.save(product);
+		
+		return product;
+	}
 }

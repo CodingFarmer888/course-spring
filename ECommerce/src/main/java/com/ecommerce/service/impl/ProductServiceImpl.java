@@ -186,9 +186,16 @@ public class ProductServiceImpl implements ProductService {
 		product.getProductPrice().setListPrice(productDto.getListPrice());
 		product.getProductPrice().setSalesPrice(productDto.getSalesPrice());
 		product.setImageData(productDto.getImageData());
-		// 不用save?
 		productDao.save(product);
 		
 		return product;
+	}
+
+
+
+	@Override
+	@Transactional(rollbackFor = { Exception.class })
+	public void deleteProductById(String productId) {
+		productDao.deleteByProductId(productId);
 	}
 }

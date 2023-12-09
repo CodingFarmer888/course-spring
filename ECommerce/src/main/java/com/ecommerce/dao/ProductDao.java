@@ -16,4 +16,6 @@ public interface ProductDao extends JpaRepository<Product, Long> {
 
 	public List<Product> findByNameLike(String string);
 	
+	public void deleteByProductId(String productId);
+	
 }

@@ -13,7 +13,7 @@ public class Cart {
 	private List<ProductLineItem> productLineItemList = new ArrayList<>();
 	
 	/** 總金額 */
-	private BigDecimal totalAmount = new BigDecimal("100");
+	private BigDecimal totalAmount = new BigDecimal("0");
 
 	public List<ProductLineItem> getProductLineItemList() {
 		return productLineItemList;

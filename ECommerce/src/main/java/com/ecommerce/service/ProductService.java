@@ -26,4 +26,7 @@ public interface ProductService {
 	/** 修改商品 */
 	public ProductDto updateProdcut(ProductDto dto);
 	
+	/** 透過productId 刪除商品 */
+	public void deleteProductById(String productId);
+	
 }

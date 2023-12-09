@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,20 +88,6 @@ public class ProductController {
 		headers.add(HttpHeaders.LOCATION, redirectUrl);
 		return new ResponseEntity<>(headers, HttpStatus.FOUND);
 	}
-
-	// TODO: 這個可以當回家練習
-	@GetMapping(value = "addToCart/{productId}/{qty}")
-	public ResponseEntity<Cart> addProductToCart(@PathVariable String productId, @PathVariable Integer qty) {
-		Cart cart = productService.addToCart(productId, qty);
-		return ResponseEntity.ok(cart);
-	}
-	
-	@GetMapping(value = "/cart")
-	public Cart getCart() {
-		Cart c = new Cart();
-		c.setProductLineItemList(cart.getProductLineItemList());
-		return c;
-	}
 	
 	@GetMapping(value = "/page/{pageNum}/size/{pageSize}")
 	public ResponseEntity<List<ProductDto>> getPageingProduct(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
@@ -135,5 +120,10 @@ public class ProductController {
 		ProductDto dto = productService.updateProdcut(productDto);
 		return ResponseEntity.ok(dto);
 	}
-
+	
+	@PostMapping("/delete")
+	public ResponseEntity<String> delete(@RequestParam String productId) {
+		productService.deleteProductById(productId);
+		return ResponseEntity.ok("刪除成功");
+	}
 }

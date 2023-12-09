@@ -1,10 +1,15 @@
 package com.ecommerce.model.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -36,6 +41,13 @@ public class Customer {
 	
 	@Column(name = "PHONE")
 	private String phone;
+	
+	// 訂單關聯
+	// FetchType.LAZY -> 單純查詢客戶的時候，不查詢訂單，等到呼叫getOrderList的時候，才查詢Order
+	@OneToMany(mappedBy = "customer",
+			cascade = {CascadeType.ALL}, orphanRemoval = true,
+			fetch = FetchType.LAZY)
+	private List<Order> orderList;
 
 	public Long getCustomerKey() {
 		return customerKey;
@@ -91,6 +103,14 @@ public class Customer {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 
 }

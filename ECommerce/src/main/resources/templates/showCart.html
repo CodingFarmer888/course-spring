@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="org.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>購物車</title>
+
+<!-- 引入 Bootstrap 的 CSS 文件 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-3.6.3.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<h2>購物車</h2>
+
+	<table class="table table-striped">
+	    <thead>
+	        <tr>
+	        	<th width="10%">商品圖</th>
+	            <th width="25%">商品名稱</th>
+	            <th width="10%">品牌</th>
+	            <th width="10%">商品狀態</th>
+	            <th width="10%">定價</th>
+	            <th width="10%">售價</th>
+	            <th width="10%">數量</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="productLineItem : ${productLineItems}">
+	        	<td><img alt="" th:src="${productLineItem.productDto.imgBase64}" width="100"/></td>
+	            <td th:text="${productLineItem.productDto.name}"></td>
+	            <td th:text="${productLineItem.productDto.brand}"></td>
+	            <td th:text="${productLineItem.productDto.statusDisp}"></td>
+	            <td th:text="${productLineItem.productDto.listPriceDisp}"></td>
+	            <td th:text="${productLineItem.productDto.salesPriceDisp}"></td>
+	            <td th:text="${productLineItem.qty}"></td>
+	        </tr>
+	    </tbody>
+    </table>
+</body>
+</html>

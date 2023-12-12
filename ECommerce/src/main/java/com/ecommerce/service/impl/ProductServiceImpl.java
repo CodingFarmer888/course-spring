@@ -42,9 +42,7 @@ public class ProductServiceImpl implements ProductService {
 			return convertToProductDto(product);
 		}).collect(Collectors.toList());
 	}
-	
-	
-	
+
 	/**
 	 * 將entity轉換成前端dto
 	 * @param product
@@ -124,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
 		// 取得Session中的購物車物件
 		List<ProductLineItem> itemList = cartInSession.getProductLineItemList();
 		// 判斷本次所加的商品是否已經存在購物車當中
-		ProductLineItem productLineItem = itemList.stream().filter(item -> item.getProductItem().getProductId().equals(productId)).findFirst().orElse(null);
+		ProductLineItem productLineItem = itemList.stream().filter(item -> item.getProductDto().getProductId().equals(productId)).findFirst().orElse(null);
 		if (productLineItem != null) {
 			// 商品已經存在購物車，直接加數量
 			productLineItem.setQty(productLineItem.getQty() + qty);

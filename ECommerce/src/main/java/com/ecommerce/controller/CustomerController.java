@@ -30,7 +30,7 @@ public class CustomerController {
 	@GetMapping(value = "/logout")
 	public ResponseEntity<String> login() {
 		customerService.logout();
-		return ResponseEntity.ok("");
+		return ResponseEntity.ok("登出成功");
 	}
 	
 	@GetMapping(value = "/checkLogin")

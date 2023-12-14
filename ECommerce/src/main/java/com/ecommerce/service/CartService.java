@@ -2,6 +2,7 @@ package com.ecommerce.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ecommerce.dao.OrderDao;
 import com.ecommerce.dao.OrderProductDao;
 import com.ecommerce.dao.ProductDao;
+import com.ecommerce.error.ActionException;
 import com.ecommerce.model.dto.ProductDto;
 import com.ecommerce.model.entity.Order;
 import com.ecommerce.model.entity.OrderProduct;
@@ -42,6 +44,9 @@ public class CartService {
 	
 	@Autowired
 	private OrderProductDao orderProductDao;
+	
+	@Autowired
+	CustomerService customerService;
 	
 	/**
 	 * 商品加入購物車
@@ -96,13 +101,19 @@ public class CartService {
 	
 	/**
 	 * 結帳，將購物車轉換為Order
+	 * @throws ActionException 
 	 */
-	public void checkOut() {
+	public void checkOut(String customerId) throws ActionException {
+		// 判斷是否是登入狀態，如果不是登入狀態，不能結帳
+		
+		if (!customerService.checkLogin(customerId)) {
+			throw new ActionException("Not Login", "9999");
+		}
 		List<ProductLineItem> productLineItems = cartInSession.getProductLineItemList();
 		
 		Order order = new Order();
 		order.setCustomerKey(loginCustomer.getCustomerKey());
-		
+		order.setOrderDate(new Date());
 		
 		List<Product> productList = new ArrayList<>();
 		
@@ -115,7 +126,8 @@ public class CartService {
 			productQtyMap.put(product, productLineItem.getQty());
 		}
 		
-		order.setProducts(productList);
+		// ManyToMany
+//		order.setProducts(productList);
 		order.setTotalAmount(cartInSession.getTotalAmount());
 		saveOrder(order, productQtyMap);
 		

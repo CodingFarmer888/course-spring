@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.dao.CustomerDao;
+import com.ecommerce.model.dto.CustomerDto;
 import com.ecommerce.model.entity.Customer;
 import com.ecommerce.model.sessionbean.LoginCustomer;
 import com.ecommerce.service.CustomerService;
@@ -26,17 +27,27 @@ public class CustomerServiceImpl implements CustomerService {
 	 * 顧客登入
 	 */
 	@Override
-	public Customer login(String customerId, String password) {
+	public CustomerDto login(String customerId, String password) {
 		
 		Customer customer = customerDao.findByCustomerIdAndPassword(customerId, password);
 		if (customer != null) {
 			// 帳號密碼正確，進行後續登入作業，這裡寫入session
+			loginCustomer.setCustomerKey(customer.getCustomerKey());
 			loginCustomer.setCustomerId(customer.getCustomerId());
 			loginCustomer.setName(customer.getName());
 			loginCustomer.setNickname(customer.getNickname());
 			loginCustomer.setEmail(customer.getEmail());
 			loginCustomer.setPhone(customer.getPhone());
-			return customer;
+			
+			CustomerDto dto = new CustomerDto();
+			dto.setCustomerKey(customer.getCustomerKey());
+			dto.setCustomerId(customer.getCustomerId());
+			dto.setName(customer.getName());
+			dto.setNickname(customer.getNickname());
+			dto.setEmail(customer.getEmail());
+			dto.setPhone(customer.getPhone());
+			
+			return dto;
 		} else {
 			return null;
 		}

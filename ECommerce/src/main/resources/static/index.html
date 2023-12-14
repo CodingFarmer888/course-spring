@@ -3,13 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>首頁</title>
+<!-- 引入 Bootstrap 的 CSS 文件 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<!-- 如果你需要使用 Bootstrap 的 JavaScript 组件，你也需要引入 Bootstrap 的 JavaScript 文件 -->
+<!-- 注意：在使用 Bootstrap 的 JavaScript 组件之前，确保引入了 jQuery 和 Popper.js -->
+<script src="/js/jquery-3.6.3.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	
 <a href="product/all">商品列表</a>
-
 <a href="product/toAddProductPage">新增商品</a>
-
 <a href="mvc/show/cart">查看購物車</a>
+
+
+<hr/>
+<form action="/mvc/login" method="post">
+  <div class="form-group">
+    <label for="customerIdLabel">顧客ID</label>
+    <input type="text" class="form-control" id="customerIdLabel" name="customerId">
+  </div>
+  <div class="form-group">
+    <label for="passwordLabel">Password</label>
+    <input type="password" class="form-control" id="passwordLabel" name="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 </body>
 </html>

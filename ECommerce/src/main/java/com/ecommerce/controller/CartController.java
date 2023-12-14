@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.error.ActionException;
 import com.ecommerce.model.vo.Cart;
 import com.ecommerce.service.CartService;
 
@@ -39,10 +41,11 @@ public class CartController {
 	
 	/**
 	 * 結帳，將購物車轉換為Order
+	 * @throws ActionException 
 	 */
 	@PostMapping(value = "/checkout")
-	public void checkOut() {
-		cartService.checkOut();
+	public void checkOut(@RequestParam String customerId) throws ActionException {
+		cartService.checkOut(customerId);
 	}
 
 }

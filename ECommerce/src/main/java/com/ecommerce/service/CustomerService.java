@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import com.ecommerce.model.dto.CustomerDto;
 import com.ecommerce.model.entity.Customer;
 
 public interface CustomerService {
@@ -7,7 +8,7 @@ public interface CustomerService {
 	public Customer findCustomerById(String customerId);
 	
 	/** 登入 */
-	public Customer login(String customerId, String password);
+	public CustomerDto login(String customerId, String password);
 	
 	/** 登出 */
 	public void logout();

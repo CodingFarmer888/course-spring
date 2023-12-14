@@ -1,5 +1,6 @@
 package com.ecommerce.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,7 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -52,8 +53,17 @@ public class Product {
 	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ProductPrice productPrice;
 	
-    @ManyToMany(mappedBy = "products", cascade = {CascadeType.MERGE})
-    private List<Order> orders;
+	/**
+	 * 多對多關聯，詳見Order
+	 */
+//    @ManyToMany(mappedBy = "products", cascade = {CascadeType.MERGE})
+//    private List<Order> orders;
+    
+	/**
+	 * 針對中間表 OrderProduct 一對多 關聯
+	 */
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderProduct> orderProducts = new ArrayList<>();
 
 	public Long getProductKey() {
 		return productKey;
@@ -111,12 +121,12 @@ public class Product {
 		this.imageData = imageData;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
+	public List<OrderProduct> getOrderProducts() {
+		return orderProducts;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setOrderProducts(List<OrderProduct> orderProducts) {
+		this.orderProducts = orderProducts;
 	}
 
 }

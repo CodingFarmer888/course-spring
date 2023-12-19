@@ -11,5 +11,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  orm:
+    entityManagerFactory:
+      name: entityManagerFactory
 app:
   imgPath: /Users/guybrush/ecommerceImg

@@ -9,4 +9,5 @@ import com.ecommerce.model.entity.Order;
 public interface OrderDao extends JpaRepository<Order, Long> {
 
 	List<Order> findByCustomerKey(Long customerKey);
+	
 }

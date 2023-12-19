@@ -3,7 +3,7 @@ package lab04.annotation.bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Component("Gta2")
+@Component(value = "I_AM_GTA2")
 //@Primary
 public class Gta2 implements Game {
 	

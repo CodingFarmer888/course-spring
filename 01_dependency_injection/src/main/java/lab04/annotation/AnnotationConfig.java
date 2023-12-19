@@ -3,6 +3,8 @@ package lab04.annotation;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import lab04.annotation.bean.Gta;
+
 // 1. 宣告是配置類
 @Configuration
 /**
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * 這裡採用正向表列，告訴Spring有哪些地方要掃描
  */
 @ComponentScan(basePackages = "lab04.annotation.bean")
+//@ComponentScan(basePackageClasses = {Gta.class})
 public class AnnotationConfig {
 
 }

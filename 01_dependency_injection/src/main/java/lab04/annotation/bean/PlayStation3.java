@@ -8,19 +8,12 @@ import org.springframework.stereotype.Component;
 public class PlayStation3 {
 	
 	@Autowired
-	@Qualifier("Gta")
+	@Qualifier("I_AM_GTA2")
 	private Game gta2;
 	
 	public void run() {
+		System.out.println("===== run PlayStation3 ======");
 		gta2.play();
-	}
-
-	public Game getGta2() {
-		return gta2;
-	}
-
-	public void setGta2(Game gta2) {
-		this.gta2 = gta2;
 	}
 
 }

@@ -12,6 +12,10 @@ Hello Mvc~<br/>
 
 <a href="hello">RequestMapping to hello</a><br>
 
+<a href="h1">RequestMapping to h1</a><br>
+
+<a href="h2">RequestMapping to h2</a><br>
+
 <form action="hello" method="POST">
 <input type="submit" value="用POST方法呼叫hello"/>
 </form>
@@ -28,5 +32,12 @@ Hello Mvc~<br/>
 <form action="postMapping" method="POST">
 <input type="submit" value="用POST方法呼叫postMapping"/>
 </form>
+
+
+<hr>
+
+<a href="toLoginPage">往登入頁</a>
+
+
 </body>
 </html>

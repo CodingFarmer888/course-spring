@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
         
-    <wb-module deploy-name="02_spring_mvc">
+    <wb-module deploy-name="04_springMvc-integrate">
                 
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
                 
@@ -12,9 +12,8 @@
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
                 
-        <property name="context-root" value="02_spring_mvc"/>
-                
-        <property name="java-output-path" value="/02_spring_mvc/target/classes"/>
+        <property name="java-output-path" value="/04_springMvc-integrate/target/classes"/>
+        <property name="context-root" value="04_springMvc-integrate"/>
             
     </wb-module>
     

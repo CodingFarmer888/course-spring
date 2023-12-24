@@ -6,11 +6,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.course</groupId>
-	<artifactId>02_spring_mvc</artifactId>
+	<artifactId>03_springMvc_annotation_config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>02_spring_mvc Maven Webapp</name>
+	<name>03_springMvc_annotation_config Maven Webapp</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.example.com</url>
 
@@ -35,19 +35,18 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 
 		<!-- 2. spring-webmvc -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-webmvc</artifactId>
-		    <version>5.3.31</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.3.31</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
-		<finalName>02_spring_mvc</finalName>
+		<finalName>03_springMvc_annotation_config</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven
 			defaults (may be moved to parent pom) -->
 			<plugins>

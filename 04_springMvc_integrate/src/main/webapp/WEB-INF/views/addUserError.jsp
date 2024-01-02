@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>註冊失敗</title>
 </head>
 <body>
-
-userTest
-
-${user.username}
+使用者建立失敗
+<a href="register">前往註冊頁</a>
 </body>
 </html>

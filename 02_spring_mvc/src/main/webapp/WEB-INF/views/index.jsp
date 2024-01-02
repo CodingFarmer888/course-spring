@@ -32,6 +32,12 @@ Hello Mvc~<br/>
 <form action="postMapping" method="POST">
 <input type="submit" value="用POST方法呼叫postMapping"/>
 </form>
+<hr>
+Pattern<br>
+
+<a href="pattern/test1">URL Pattern: "pattern/test1" </a><br>
+
+<a href="pattern/test2">URL Pattern: "pattern/test2" </a><br>
 
 
 <hr>

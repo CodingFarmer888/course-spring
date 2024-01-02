@@ -4,16 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>登入頁</title>
+<title>註冊頁</title>
 </head>
 <body>
-登入頁
-<form action="doLogin" method="POST">
+註冊頁
+<form action="add" method="POST">
 	Email: <input type="text" name="email"/> <br>
 	Password: <input type="password" name="password"/> <br>
+	Username: <input type="text" name="username"/> <br>
 	<input type="submit" />
 </form>
-
-<a href="register">註冊</a>
 </body>
 </html>

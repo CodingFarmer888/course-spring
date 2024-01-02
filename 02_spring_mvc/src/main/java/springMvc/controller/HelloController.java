@@ -3,6 +3,7 @@ package springMvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,5 +72,36 @@ public class HelloController {
 		return "login";
 	}
 	
+	// 匹配一個字元 test1, test2 -> OK, test10 -> NO
+	@RequestMapping("/pattern/test?")
+	public String pattern1() {
+		return "success";
+	}
+	
+	// 匹配多個字元 test10, test100 -> OK
+	@RequestMapping("/pattern/test*")
+	public String pattern2() {
+		return "success";
+	}
+	
+	// 匹配零個或多個路徑 /abcd, /abcd/defg -> OK
+	@RequestMapping("/pattern/**")
+	public String pattern3() {
+		return "success";
+	}
+	
+	// 匹配一個路徑並將其捕獲為名稱為 "spring" 的變數
+//	@RequestMapping("/pattern/path/{spring}")
+//	public String pattern4(@PathVariable String spring) {
+//		System.out.println("Path Variable: " + spring);
+//		return "success";
+//	}
+	
+	// 將正則表達式作為名稱為 "spring" 的路徑變數進行匹配
+	@RequestMapping("/pattern/path/{spring:[a-zA-Z]+}")
+	public String pattern5(@PathVariable String spring) {
+		System.out.println("Path Variable[a-zA-z]: " + spring);
+		return "success";
+	}
 	
 }

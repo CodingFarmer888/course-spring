@@ -6,10 +6,7 @@ package lab01.tightCoupling;
 public class SingleGameConsole {
 
 	private Tetris tetris = new Tetris();
-	
-	public SingleGameConsole() {
-	}
-	
+
 	public void run() {
 		tetris.play();
 	}

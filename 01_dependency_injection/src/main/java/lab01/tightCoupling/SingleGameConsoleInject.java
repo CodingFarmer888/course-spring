@@ -6,13 +6,13 @@ package lab01.tightCoupling;
  */
 public class SingleGameConsoleInject {
 
-	private Tetris tetris;
+	private Game game;
 	
-	public SingleGameConsoleInject(Tetris tetris) {
-		this.tetris = tetris;
+	public SingleGameConsoleInject(Game game) {
+		this.game = game;
 	}
 	
 	public void run() {
-		tetris.play();
+		game.play();
 	}
 }

@@ -8,5 +8,7 @@
 </head>
 <body>
 登入成功
+
+${ user.nickname }
 </body>
 </html>

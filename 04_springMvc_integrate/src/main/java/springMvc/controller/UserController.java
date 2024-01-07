@@ -2,6 +2,8 @@ package springMvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import springMvc.entity.UserEntity;
 import springMvc.service.UserService;
@@ -71,9 +72,15 @@ public class UserController {
 		return "addUserSuccess";
 	}
 	
-	@GetMapping("/test")
-	public String test(Model model) {
-		model.addAttribute(null, model);
-		return null;
+
+	
+	@PostMapping("/doLoginAndSaveSession")
+	public ModelAndView doLogin(String email, String password, HttpSession session) {
+		UserEntity user = userService.findUser(email, password);
+		session.setAttribute("user", user);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("loginSuccess");
+		mav.addObject("user", user);
+		return mav;
 	}
 }

@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component(value = "I_AM_GTA2")
-//@Primary
+// @Primary
 public class Gta2 implements Game {
 	
 	@Override

@@ -13,6 +13,10 @@ public class JavaConfigMain {
 		// 1. 取得Spring Container -> ApplicationContext -> 讀取Java Config檔案 AnnotationConfigApplicationContext
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(GameConsoleConfig.class);
 		
+		
+		PlayStation psTest = ctx.getBean("xBox", PlayStation.class);
+		psTest.run();
+		
 		// 2. 取得指定的Bean
 		PlayStation ps = ctx.getBean(PlayStation.class);
 		ps.run();

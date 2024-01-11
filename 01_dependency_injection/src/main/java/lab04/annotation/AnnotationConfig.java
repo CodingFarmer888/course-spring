@@ -12,7 +12,7 @@ import lab04.annotation.bean.Gta;
  * 掃描哪些package @ComponentScan -> 需要指定pagage路徑 basePackages
  * 這裡採用正向表列，告訴Spring有哪些地方要掃描
  */
-@ComponentScan(basePackages = "lab04.annotation.bean")
+@ComponentScan(basePackages = {"lab04.annotation.bean"})
 //@ComponentScan(basePackageClasses = {Gta.class})
 public class AnnotationConfig {
 

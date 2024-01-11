@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 // prototype
-//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@Scope("prototype")
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+// @Scope("prototype")
 public class PrototypeBean {
 
 }

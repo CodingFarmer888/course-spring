@@ -22,4 +22,9 @@ public class GameConsoleConfig {
 	public PlayStation playStation() {
 		return new PlayStation(finalFantasy());
 	}
+	
+	@Bean(name = "xBox")
+	public PlayStation playStation2() {
+		return new PlayStation(dragonQuest());
+	}
 }

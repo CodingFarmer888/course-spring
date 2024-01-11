@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class PlayStation3 {
 	
 	@Autowired
-	@Qualifier("I_AM_GTA2")
+//	@Qualifier("I_AM_GTA2")
 	private Game gta2;
 	
 	public void run() {

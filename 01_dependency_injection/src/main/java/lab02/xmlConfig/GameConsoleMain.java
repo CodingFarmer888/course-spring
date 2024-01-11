@@ -17,9 +17,13 @@ public class GameConsoleMain {
 		GameConsoleConstructorInjection console = ctx.getBean("gameConsoleConstructorInjection", GameConsoleConstructorInjection.class);
 		console.run();
 		
+		// Setter注入
+		System.out.println("===== Setter注入 =====");
 		GameConsoleSetterInjection consoleSetterInjection = ctx.getBean("gameConsoleSetterInjection", GameConsoleSetterInjection.class);
 		consoleSetterInjection.run();
 		
+		// 自動裝配
+		System.out.println("===== 自動裝配 =====");
 		GameConsoleAutowire consoleAutowire = ctx.getBean("gameConsoleAutowire", GameConsoleAutowire.class);
 		consoleAutowire.run();
 		

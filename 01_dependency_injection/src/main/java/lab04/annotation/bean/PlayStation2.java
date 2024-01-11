@@ -17,10 +17,10 @@ public class PlayStation2 {
 	 * 		
 	 */
 	
-	// @Autowired
+	@Autowired
 	private Game game;
 
-	@Autowired
+//	@Autowired
 	public PlayStation2(@Qualifier("gta") Game game) {
 		this.game = game;
 	}

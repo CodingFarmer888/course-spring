@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+// @Primary
 // 沒有特別指定名稱，默認為首字小寫 -> gta
 public class Gta implements Game {
 

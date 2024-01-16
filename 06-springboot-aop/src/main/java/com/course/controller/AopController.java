@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.course.exception.ActionException;
 import com.course.service.AopService;
 
 @RestController
@@ -29,6 +30,12 @@ public class AopController {
 	public String serviceMethodWithException() {
 		String result = aopService.serviceMethodWithException();
 		return result;
+	}
+	
+	@GetMapping("/serviceMethodWithActionException")
+	public String serviceMethodWithActionException() throws ActionException {
+		aopService.serviceMethodWithActionException();
+		return "XXX";
 	}
 	
 }

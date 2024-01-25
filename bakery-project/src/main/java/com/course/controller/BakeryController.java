@@ -76,14 +76,17 @@ public class BakeryController {
 		return "about";
 	}
 	
-	@GetMapping("/detail")
-	public String toDetailPage() {
+	@GetMapping("/detail/{id}")
+	public String toDetailPage(@PathVariable Long id) {
 		return "detail";
 	}
 	
 	@GetMapping("/product")
-	public String toProductPage() {
-		return "product";
+	public ModelAndView toProductPage() {
+		List<Product> productList = service.findAllProduct();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("product");
+		mav.addObject("products", productList);
+		return mav;
 	}
-
 }

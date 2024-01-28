@@ -77,8 +77,13 @@ public class BakeryController {
 	}
 	
 	@GetMapping("/detail/{id}")
-	public String toDetailPage(@PathVariable Long id) {
-		return "detail";
+	public ModelAndView toDetailPage(@PathVariable Integer id) {
+		// 取得指定id的產品資料
+		Product product = service.findById(id);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("detail");
+		mav.addObject("product", product);
+		return mav;
 	}
 	
 	@GetMapping("/product")
@@ -88,5 +93,25 @@ public class BakeryController {
 		mav.setViewName("product");
 		mav.addObject("products", productList);
 		return mav;
+	}
+	
+	@GetMapping("/checkout/{id}/{qty}")
+	public ModelAndView toCheckoutPage(@PathVariable Integer id, @PathVariable Integer qty) {
+		System.out.println("id: " + id + ",qty: " + qty);
+		Product product = service.findById(id);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("checkout");
+		mav.addObject("product", product);
+		mav.addObject("qty", qty);
+		return mav;
+	}
+	
+	@GetMapping("/confirm")
+	public String checkoutConfirm() {
+		// 結帳，生成訂單
+		
+		// PRG
+		
+		return "checkoutSuccess";
 	}
 }

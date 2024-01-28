@@ -13,7 +13,7 @@
 
 <body>
 	<!-- 共用 navbar-->
-	<div th:replace="fragments/navbar :: navbar"></div>
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
     <img src="images/banner.jpg" class="img-responsive" id="banner">
     <div id="content" class="container">
         <div class="row text-center">
@@ -45,10 +45,7 @@
             </div>
         </div>
     </div>
-    <footer>
-        © 2017 CHEESE. All Rights Reserved.
-    </footer>
-   
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 
 </html>

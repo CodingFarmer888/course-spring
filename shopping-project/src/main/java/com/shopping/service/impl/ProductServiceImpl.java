@@ -13,9 +13,10 @@ import org.springframework.stereotype.Service;
 
 import com.shopping.entity.Product;
 import com.shopping.repository.ProductRepository;
+import com.shopping.service.ProductService;
 
 @Service
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductRepository dao;

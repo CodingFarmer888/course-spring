@@ -1,5 +1,6 @@
 package com.shopping.entity;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -32,6 +33,9 @@ public class Product {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Create_Date", nullable = false)
 	private Date createDate;
+	
+	@Column(name = "Image_Url", nullable = true)
+	private String imageUrl;
 
 	public Product() {
 	}
@@ -76,8 +80,18 @@ public class Product {
 		this.image = image;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [code=" + code + ", name=" + name + ", price=" + price + ", createDate=" + createDate + "]";
+		return "Product [code=" + code + ", name=" + name + ", price=" + price + ", image=" + Arrays.toString(image)
+				+ ", createDate=" + createDate + ", imageUrl=" + imageUrl + "]";
 	}
+
 }

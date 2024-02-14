@@ -1,7 +1,11 @@
 package com.course.vo;
 
+/**
+ * 旅遊Vo物件
+ */
 public class TourVo {
 
+	/** 鍵值 */
 	private Long id;
 	
 	/** 標題 */

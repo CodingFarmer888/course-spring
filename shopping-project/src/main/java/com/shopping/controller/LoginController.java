@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.entity.User;
 import com.shopping.exception.ActionException;
+import com.shopping.model.CartInfo;
 import com.shopping.repository.UserRepository;
 
 @CrossOrigin("*")
 @RestController
 public class LoginController {
+	
+	@Autowired
+	private CartInfo cartInSession;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -40,15 +44,10 @@ public class LoginController {
 			throw new ActionException("密碼錯誤", "INVALID_PASSWORD");
 		}
 	}
-	
-	@GetMapping("/users")
-	public List<User> findAllUsers() {
-		return userRepository.findAll();
-	}
-	
-	@GetMapping("/user/{username}")
-	public User findByUsername(@PathVariable String username) {
-		return userRepository.findByUsername(username);
+
+	@PostMapping("/logout")
+	public void logout() {
+		// TODO登出，清空Session User資料
 	}
 
 }

@@ -1,10 +1,20 @@
 package com.shopping.model;
 
+/**
+ * 客戶資料
+ */
 public class CustomerInfo {
 
+	/** 顧客姓名 */
 	private String name;
+	
+	/** 地址 */
 	private String address;
+	
+	/** Email */
 	private String email;
+	
+	/** 手機 */
 	private String phone;
 
 	private boolean valid;

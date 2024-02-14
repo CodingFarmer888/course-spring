@@ -16,5 +16,6 @@ public interface TourRepository extends JpaRepository<TourEntity, Long> {
 	/** 透過關鍵字搜尋，並分頁 */
 	public Page<TourEntity> findByTitleContainsOrDescriptContains(String titleKeyword, String descriptKeyword, Pageable pageable);
 
+
 	public List<TourEntity> findByHighLight(boolean highLight);
 }

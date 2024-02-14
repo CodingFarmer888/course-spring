@@ -3,9 +3,18 @@ package com.shopping.model;
 import com.shopping.entity.Product;
 
 public class ProductInfo {
+	
+	/** 商品編號 */
 	private String code;
+	
+	/** 商品名稱 */
 	private String name;
+	
+	/** 單價 */
 	private double price;
+	
+	/** 圖檔連結 */
+	private String imageUrl;
 
 	public ProductInfo() {
 	}
@@ -14,12 +23,14 @@ public class ProductInfo {
 		this.code = product.getCode();
 		this.name = product.getName();
 		this.price = product.getPrice();
+		this.imageUrl = product.getImageUrl();
 	}
 
-	public ProductInfo(String code, String name, double price) {
+	public ProductInfo(String code, String name, double price, String imageUrl) {
 		this.code = code;
 		this.name = name;
 		this.price = price;
+		this.imageUrl = imageUrl;
 	}
 
 	public String getCode() {
@@ -46,4 +57,16 @@ public class ProductInfo {
 		this.price = price;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductInfo [code=" + code + ", name=" + name + ", price=" + price + ", imageUrl=" + imageUrl + "]";
+	}
 }

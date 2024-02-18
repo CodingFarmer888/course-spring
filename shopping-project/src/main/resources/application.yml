@@ -11,3 +11,15 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: none
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: none
+        secure: true
+#  ssl:
+#    key-store: /Users/guybrush/git/SpringFramework/course-spring/shopping-project/src/main/resources/keystore.p12
+#    key-store-password: 1qaz2wsx
+#    key-store-type: PKCS12
+#    key-alias: tomcat

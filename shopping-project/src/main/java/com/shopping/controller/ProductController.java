@@ -14,7 +14,7 @@ import com.shopping.entity.Product;
 import com.shopping.model.ProductInfo;
 import com.shopping.service.ProductService;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "http://localhost:3000" }, allowedHeaders = "*", allowCredentials = "true")
 @RestController
 public class ProductController {
 

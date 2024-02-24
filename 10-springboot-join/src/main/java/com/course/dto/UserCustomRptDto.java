@@ -1,27 +1,35 @@
 package com.course.dto;
 
+import jakarta.persistence.ColumnResult;
+import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityResult;
-import jakarta.persistence.FieldResult;
 import jakarta.persistence.Id;
 import jakarta.persistence.SqlResultSetMapping;
 
-@SqlResultSetMapping(
-name = "UserCustomRptDtoMapping",
-entities={
-  @EntityResult(
-      entityClass = com.course.dto.UserCustomRptDto.class,
-      fields = {
-    	// name為UserCustomRptDto這個Entity的欄位
-    	// column 為SQL的欄位名稱，這裡使用可以使用別名來對應
-      	@FieldResult(name="userId", column="USERID"),
-        @FieldResult(name="userName",  column="USERNAME"),
-        @FieldResult(name="orderId",  column="ORDERID"),
-        @FieldResult(name="productName",  column="PRODUCTNAME"),
-        @FieldResult(name="productPrice",  column="PRODUCTPRICE")
-      }
-  )
-})
+//@SqlResultSetMapping(
+//name = "UserCustomRptDtoMapping",
+//entities={
+//  @EntityResult(
+//      entityClass = com.course.dto.UserCustomRptDto.class,
+//      fields = {
+//    	// name為UserCustomRptDto這個Entity的欄位
+//    	// column 為SQL的欄位名稱，這裡使用可以使用別名來對應
+//      	@FieldResult(name="userId", column="USERID"),
+//        @FieldResult(name="userName",  column="USERNAME"),
+//        @FieldResult(name="orderId",  column="ORDERID"),
+//        @FieldResult(name="productName",  column="PRODUCTNAME"),
+//        @FieldResult(name="productPrice",  column="PRODUCTPRICE")
+//      }
+//  )
+//})
+
+@SqlResultSetMapping(name = "UserCustomRptDtoMapping", classes = {
+		@ConstructorResult(targetClass = com.course.dto.UserCustomRptDto.class, columns = {
+				@ColumnResult(name = "USERID", type = Long.class),
+				@ColumnResult(name = "USERNAME", type = String.class),
+				@ColumnResult(name = "ORDERID", type = Long.class),
+				@ColumnResult(name = "PRODUCTNAME", type = String.class),
+				@ColumnResult(name = "PRODUCTPRICE", type = Integer.class) }) })
 
 // 這裡的Entity不是真實存在於資料當中的實體，而是為了映射結果集產生的對應實體
 @Entity
@@ -29,14 +37,27 @@ public class UserCustomRptDto {
 	// Entity必須有Id
 	@Id
 	private Long userId;
-	
+
 	private String userName;
-	
+
 	private Long orderId;
-	
+
 	private String productName;
-	
+
 	private Integer productPrice;
+
+	// 空的構造函數
+	public UserCustomRptDto() {
+	}
+
+	// 帶有所有字段的構造函數
+	public UserCustomRptDto(Long userId, String userName, Long orderId, String productName, Integer productPrice) {
+		this.userId = userId;
+		this.userName = userName;
+		this.orderId = orderId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -77,5 +98,5 @@ public class UserCustomRptDto {
 	public void setProductPrice(Integer productPrice) {
 		this.productPrice = productPrice;
 	}
-	
+
 }

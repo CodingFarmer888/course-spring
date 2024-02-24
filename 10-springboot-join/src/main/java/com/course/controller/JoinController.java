@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course.dto.UserRptDto;
@@ -34,6 +35,11 @@ public class JoinController {
 	@GetMapping("/entityManager/orderItems/{userId}")
 	public List<UserRptDto> getOrderItemByUserId(@PathVariable Long userId) {
 		return userCustomDao.getOrderDetailByUserId(userId);
+	}
+	
+	@GetMapping("/entityManager/getOrderItemByCondition/")
+	public List<UserRptDto> getOrderItemByCondition(@RequestParam Long userId, @RequestParam(required = false) Integer price) {
+		return userCustomDao.getOrderDetailByCondition(userId, price);
 	}
 	
 }

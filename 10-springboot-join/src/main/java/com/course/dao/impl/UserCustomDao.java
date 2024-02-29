@@ -1,4 +1,4 @@
-package com.course.repository;
+package com.course.dao.impl;
 
 import java.util.List;
 

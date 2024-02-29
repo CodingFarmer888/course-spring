@@ -6,23 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.SqlResultSetMapping;
 
-//@SqlResultSetMapping(
-//name = "UserCustomRptDtoMapping",
-//entities={
-//  @EntityResult(
-//      entityClass = com.course.dto.UserCustomRptDto.class,
-//      fields = {
-//    	// name為UserCustomRptDto這個Entity的欄位
-//    	// column 為SQL的欄位名稱，這裡使用可以使用別名來對應
-//      	@FieldResult(name="userId", column="USERID"),
-//        @FieldResult(name="userName",  column="USERNAME"),
-//        @FieldResult(name="orderId",  column="ORDERID"),
-//        @FieldResult(name="productName",  column="PRODUCTNAME"),
-//        @FieldResult(name="productPrice",  column="PRODUCTPRICE")
-//      }
-//  )
-//})
-
 @SqlResultSetMapping(name = "UserCustomRptDtoMapping", classes = {
 		@ConstructorResult(targetClass = com.course.dto.UserCustomRptDto.class, columns = {
 				@ColumnResult(name = "USERID", type = Long.class),
@@ -46,11 +29,12 @@ public class UserCustomRptDto {
 
 	private Integer productPrice;
 
-	// 空的構造函數
+	// 預設建構式
 	public UserCustomRptDto() {
+
 	}
 
-	// 帶有所有字段的構造函數
+	// 帶有欄位的建構式，提供Ｍapping使用
 	public UserCustomRptDto(Long userId, String userName, Long orderId, String productName, Integer productPrice) {
 		this.userId = userId;
 		this.userName = userName;

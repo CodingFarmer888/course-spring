@@ -38,5 +38,9 @@ public interface ProductService {
 	List<ProductEntity> getNameLike(String name);
 	
 	List<ProductEntity> getNameIn(List<String> nameList);
+	
+	List<ProductEntity> getNameLikeOrderByPrice(String name);
+	
+	Integer countByName(String name);
 
 }

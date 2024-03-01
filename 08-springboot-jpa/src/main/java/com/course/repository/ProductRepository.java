@@ -36,5 +36,11 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	
 	// select * from product where name in (?, ?, ?)
 	List<ProductEntity> findByNameIn(List<String> nameList);
+	
+	// select * from product where name like ? order by price desc
+	List<ProductEntity> findByNameLikeOrderByPrice(String name);
+	
+	// select count(*) from product where name = ?
+	Integer countByName(String name);
 
 }

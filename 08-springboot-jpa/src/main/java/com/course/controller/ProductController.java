@@ -1,5 +1,6 @@
 package com.course.controller;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course.entity.ProductEntity;
+import com.course.repository.ProductQueryRepository;
 import com.course.service.ProductService;
 
 @RestController
@@ -20,6 +22,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductQueryRepository queryRepository;
 	
 	/**
 	 * 新增商品
@@ -120,5 +125,25 @@ public class ProductController {
 	public List<ProductEntity> getNameIn() {
 		List<String> nameList = Arrays.asList("EarBuds","P05","P99");
 		return productService.getNameIn(nameList);
+	}
+	
+	@GetMapping("/findByNameLikeOrderByPriceDesc")
+	public List<ProductEntity> getNameLikeOrderByPrice(String name) {
+		return productService.getNameLikeOrderByPrice(name);
+	}
+	
+	@GetMapping("/countByName")
+	public Integer countByName(String name) {
+		return productService.countByName(name);
+	}
+	
+	@GetMapping("/findByJpql2")
+	public List<ProductEntity> getByJqpl(String name, String price) {
+		return queryRepository.findByJpqlNamed(name, new BigDecimal(price));
+	}
+	
+	@GetMapping("/findByNativeSql")
+	public List<ProductEntity> getByNativeSql(String name) {
+		return queryRepository.findByNativeSql(name);
 	}
 }

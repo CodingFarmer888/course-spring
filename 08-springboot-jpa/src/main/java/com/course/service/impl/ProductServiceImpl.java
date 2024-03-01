@@ -131,5 +131,16 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductEntity> getNameIn(List<String> nameList) {
 		return productRepository.findByNameIn(nameList);
 	}
+	
+	@Override
+	public List<ProductEntity> getNameLikeOrderByPrice(String name) {
+		String condition = "%" + name + "%";
+		return productRepository.findByNameLikeOrderByPrice(condition);
+	}
+
+	@Override
+	public Integer countByName(String name) {
+		return productRepository.countByName(name);
+	}
 
 }

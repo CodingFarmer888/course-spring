@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course.entity.ProductEntity;
+import com.course.repository.ProductPageRepository;
 import com.course.repository.ProductQueryRepository;
 import com.course.service.ProductService;
 
@@ -25,6 +31,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductQueryRepository queryRepository;
+	
+	@Autowired
+	private ProductPageRepository pageRepository;
 	
 	/**
 	 * 新增商品
@@ -146,4 +155,39 @@ public class ProductController {
 	public List<ProductEntity> getByNativeSql(String name) {
 		return queryRepository.findByNativeSql(name);
 	}
+	
+	@PostMapping("/updateProductName")
+	public Integer updateProductName(@RequestParam String code, @RequestParam String name) {
+		return queryRepository.updateProductName(code, name);
+	}
+	
+	@GetMapping("/getAllProductSortByPrice")
+	public List<ProductEntity> getAllProductSortByPrice(Integer pageNo, Integer pageCount) {
+		// Sort sort = Sort.by("code");
+		Sort sort = Sort.by(Direction.DESC, "createDate");
+		return pageRepository.findAll(sort);
+	}
+	
+	@GetMapping("/getAllProductByPage")
+	public Page<ProductEntity> getAllProductByPage(Integer pageNo, Integer pageCount) {
+		Pageable pageable = PageRequest.of(pageNo, pageCount);
+		Page<ProductEntity> page = pageRepository.findAll(pageable);
+		return page;
+	}
+	
+	@GetMapping("/getProductByNamePageable")
+	public Page<ProductEntity> getProductByNamePageable(String name, Integer pageNo, Integer pageCount) {
+		Pageable pageable = PageRequest.of(pageNo, pageCount);
+		Page<ProductEntity> page = pageRepository.findByName(name, pageable);
+		return page;
+	}
+	
+	@GetMapping("/queryByName")
+	public Page<ProductEntity> queryByName(String name, Integer pageNo, Integer pageCount) {
+		Pageable pageable = PageRequest.of(pageNo, pageCount);
+		Page<ProductEntity> page = pageRepository.queryByName(name, pageable);
+		return page;
+	}
+	
+
 }

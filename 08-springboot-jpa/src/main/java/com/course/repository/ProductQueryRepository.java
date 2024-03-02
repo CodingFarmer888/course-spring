@@ -4,10 +4,13 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.course.entity.ProductEntity;
+
+import jakarta.transaction.Transactional;
 
 public interface ProductQueryRepository extends JpaRepository<ProductEntity, Long> {
 
@@ -22,4 +25,9 @@ public interface ProductQueryRepository extends JpaRepository<ProductEntity, Lon
 	
 	@Query(value = "select p.* from product p where p.name = ?1", nativeQuery = true)
 	List<ProductEntity> findByNativeSql(String name);
+	
+	@Modifying
+	@Transactional
+	@Query("update ProductEntity p set p.name = ?2 where p.code = ?1")
+	Integer updateProductName(String code, String name);
 }

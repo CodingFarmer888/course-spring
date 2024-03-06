@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * 產品資料表
+ */
 @Entity
 @Table(name = "PRODUCT")
 public class ProductEntity {

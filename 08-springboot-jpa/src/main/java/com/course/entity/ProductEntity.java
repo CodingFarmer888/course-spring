@@ -2,12 +2,19 @@ package com.course.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -42,6 +49,15 @@ public class ProductEntity {
 	/** 圖片連結 */
 	@Column(name = "IMAGE_URL", nullable = true)
 	private String imageUrl;
+
+	/** 一對一 關聯關聯產品價格資料表 */
+	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private ProductPriceEntity productPrice;
+	
+	/** 多對多關聯 */
+//	@JsonIgnore
+//    @ManyToMany(mappedBy = "products", cascade = {CascadeType.ALL})
+//    private List<StoreEntity> stores;
 
 	public Long getId() {
 		return id;
@@ -90,5 +106,21 @@ public class ProductEntity {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
+	public ProductPriceEntity getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(ProductPriceEntity productPrice) {
+		this.productPrice = productPrice;
+	}
+
+//	public List<StoreEntity> getStores() {
+//		return stores;
+//	}
+//
+//	public void setStores(List<StoreEntity> stores) {
+//		this.stores = stores;
+//	}
 	
 }

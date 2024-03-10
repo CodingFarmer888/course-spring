@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.course.entity.ProductEntity;
 import com.course.repository.ProductPageRepository;
 import com.course.repository.ProductQueryRepository;
+import com.course.repository.ProductRepository;
 import com.course.service.ProductService;
 
 @RestController
@@ -28,6 +29,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductRepository productRepository;
 	
 	@Autowired
 	private ProductQueryRepository queryRepository;
@@ -189,5 +193,4 @@ public class ProductController {
 		return page;
 	}
 	
-
 }

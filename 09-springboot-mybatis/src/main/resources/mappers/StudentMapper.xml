@@ -22,4 +22,62 @@
 	<delete id="deleteStudent">
 		DELETE FROM student WHERE id=#{id}
 	</delete>
+	
+	<!-- 動態查詢 -->
+	<select id="findByIf" resultType="com.course.vo.StudentVo">
+		SELECT * FROM student 
+		WHERE name LIKE #{name}
+	  	<if test="sex != null and sex !='' ">
+		    AND sex = #{sex}
+	  	</if>
+	</select>
+	
+	<select id="findByChoose" resultType="com.course.vo.StudentVo">
+		SELECT * FROM student 
+		WHERE id IS NOT NULL 
+		<choose>
+			<when test="name != null and name !='' ">
+				AND name like #{name}
+			</when>
+			
+			<when test="sex != null and sex != '' ">
+				AND sex = #{sex}
+			</when>
+			<otherwise>
+				AND name = '福利蓮'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findByWhere" resultType="com.course.vo.StudentVo">
+		SELECT * FROM student 
+		<where>
+			<if test="name != null and name !='' ">
+				AND name like #{name}
+			</if>
+		  	<if test="sex != null and sex !='' ">
+			    AND sex = #{sex}
+		  	</if>
+		</where>
+	</select>
+	
+	<select id="findByNames" resultType="com.course.vo.StudentVo">
+		SELECT * FROM student
+		<where>
+			<foreach collection="names" item="name" open="NAME in (" separator="," close=")" >
+				#{name}
+			</foreach>
+		</where>
+	</select>
+	
+	<update id="updateStudentByCondition" parameterType="com.course.vo.StudentVo">
+		UPDATE student 
+		<set>
+			<if test="name != null and name !='' ">name = #{name},</if>
+			<if test="sex != null and sex !='' ">sex = #{sex},</if>
+			<if test="birthday != null ">birthday = #{birthday},</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
 </mapper>

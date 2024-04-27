@@ -6,5 +6,27 @@
 
     <!-- bean definitions here -->
     <bean id="toyota" class="com.course.model.Toyota"></bean>
+    
+    <bean id="bmw" class="com.course.model.BmwCar">
+    	<!-- 屬性注入 -->
+    	<property name="price" value="10000"></property>
+    	<property name="engine" ref="bmwEngine"></property>
+    </bean>
+    
 
+    <bean id="bmwEngine" class=" com.course.model.BmwEngine">
+    </bean>
+    
+        
+    <bean id="benz" class="com.course.model.BenzCar">
+    	<!-- 建構式注入 -->
+    	<constructor-arg value="100000"></constructor-arg>
+    	<constructor-arg ref="bmwEngine"></constructor-arg>
+    </bean>
+    
+    
+    <bean id="tesla" class="com.course.model.TeslaCar" autowire="byType"></bean>
+    
+    <bean id="engine" class="com.course.model.BenzEngine"></bean>
+    
 </beans>

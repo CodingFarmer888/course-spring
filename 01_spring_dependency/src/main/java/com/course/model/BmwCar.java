@@ -1,8 +1,28 @@
 package com.course.model;
 
 public class BmwCar {
-	Engine engine;
 	
+	private int price;
+	
+	private Engine engine;
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		System.out.println("BmwCar setPrice");
+		this.price = price;
+	}
+	
+	public Engine getEngine() {
+		return engine;
+	}
+
+	public BmwCar() {
+		System.out.println("BmwCar建構式");
+	}
+
 	// 建構式注入 Constructor Injection
 	public BmwCar(Engine engine) {
 		this.engine = engine;

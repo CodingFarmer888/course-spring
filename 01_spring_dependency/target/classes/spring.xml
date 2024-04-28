@@ -25,8 +25,9 @@
     </bean>
     
     
+    <!-- 自動裝配 -->
     <bean id="tesla" class="com.course.model.TeslaCar" autowire="byType"></bean>
+    <bean id="engine" class="com.course.model.BenzEngine" primary="true"></bean>
     
-    <bean id="engine" class="com.course.model.BenzEngine"></bean>
     
 </beans>

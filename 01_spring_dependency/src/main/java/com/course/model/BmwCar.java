@@ -25,6 +25,7 @@ public class BmwCar {
 
 	// 建構式注入 Constructor Injection
 	public BmwCar(Engine engine) {
+		System.out.println("BmwCar建構式");
 		this.engine = engine;
 	}
 	

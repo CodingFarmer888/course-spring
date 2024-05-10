@@ -14,7 +14,7 @@
 	<br/>
 	密碼：<input type="text" name="password" />
 	<br/>
-	<input type="submit" value="登入" />
+	<input type="submit" value="註冊" />
 </form>
 </body>
 </html>

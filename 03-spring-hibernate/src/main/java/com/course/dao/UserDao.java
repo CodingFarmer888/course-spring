@@ -17,5 +17,5 @@ public interface UserDao {
 	void save(User user);
 	
 	// Delete 刪除
-	void delete(Long id);
+	void delete(User user);
 }

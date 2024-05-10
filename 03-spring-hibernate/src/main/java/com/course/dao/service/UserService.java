@@ -1,5 +1,7 @@
 package com.course.dao.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +45,42 @@ public class UserService {
 		user.setPassword(password);
 		userDao.insert(user);
 	}
+	
+	/**
+	 * 搜尋使用者
+	 * @param username
+	 * @return
+	 */
+	public User findUser(String username) {
+		return userDao.findByUsername(username);
+	}
+	
+	/**
+	 * 更新使用者
+	 * @param username
+	 * @param password
+	 */
+	public void updateUser(String username, String password) {
+		User user = this.findUser(username);
+		if (user != null) {
+			user.setPassword(password);
+			userDao.save(user);			
+		}
+	}
+	
+	/**
+	 * 刪除使用者
+	 * @param username
+	 * @param password
+	 */
+	public void deleteUser(String username) {
+		User user = this.findUser(username);
+		if (user != null) {
+			userDao.delete(user);			
+		}
+	}
 
+	public List<User> getAllUsers() {
+		return userDao.findAll();
+	}
 }

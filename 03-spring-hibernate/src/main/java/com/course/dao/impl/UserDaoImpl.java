@@ -1,5 +1,6 @@
 package com.course.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -39,29 +40,56 @@ public class UserDaoImpl implements UserDao {
 		SessionFactory sessionFactory = configuration.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
-		String sql = "select u from User u where u.username = ?1";
-		Query<User> query = session.createQuery(sql, User.class);
-		query.setParameter(1, username);
-		List<User> resultList = query.getResultList();
+		// JPQL & Position parameter: 透過 問號+數字 (?1, ?2, ?3)
+		// String sql = "select u from User u where u.username = ?1";
+		// Query<User> query = session.createQuery(sql, User.class);
+		// query.setParameter(1, username);
 		
+		// NativeSQL & Named parameter: 透過 冒號+名稱 (:username, :email)
+		String sql = "select * from user u where u.username = :name";
+		Query<User> query = session.createNativeQuery(sql, User.class);
+		query.setParameter("name", username);
+
+		List<User> resultList = query.getResultList();
+		session.close();
 		return resultList != null && resultList.size() > 0 ? resultList.get(0) : null;
 	}
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> result = new ArrayList<>();
+		try(Session session = connectionService.getSession();) {
+			String sql = "select u from User u";
+			Query<User> query = session.createQuery(sql, User.class);
+			result = query.getResultList();
+		}
+		return result;
 	}
 
 	@Override
 	public void save(User user) {
-		// TODO Auto-generated method stub
-		
+		Session session = connectionService.getSession();
+		// 開啟交易
+		Transaction transaction = session.beginTransaction();
+		// DB 操作
+		session.update(user);
+		// 提交
+		transaction.commit();
+		// 關閉連線
+		session.close();
 	}
 
 	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
+	public void delete(User user) {
+		Session session = connectionService.getSession();
+		// 開啟交易
+		Transaction transaction = session.beginTransaction();
+		// 刪除
+		session.delete(user);
+		// 提交
+		transaction.commit();
+		// 關閉連線
+		session.close();
 		
 	}
 

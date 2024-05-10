@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.course.dao.service.UserService;
 import com.course.entity.User;
@@ -31,5 +32,37 @@ public class UserController {
 	public String resiger(@RequestParam("username") String username, @RequestParam("password") String password) {
 		userService.addUser(username, password);
 		return "registerSuccess";
+	}
+	
+	@RequestMapping("/userList")
+	public ModelAndView allUsers() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userList");
+		mv.addObject("users", userService.getAllUsers());
+		return mv;
+	}
+	
+	@RequestMapping("/deleteUser")
+	public ModelAndView deleteUser(String username) {
+		// 刪除使用者
+		userService.deleteUser(username);
+		
+		// 轉導回使用者列表頁
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userList");
+		mv.addObject("users", userService.getAllUsers());
+		return mv;
+	}
+	
+	@RequestMapping("/updateUser")
+	public ModelAndView updateUser(String username, String password) {
+		// 刪除使用者
+		userService.updateUser(username, password);
+		
+		// 轉導回使用者列表頁
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userList");
+		mv.addObject("users", userService.getAllUsers());
+		return mv;
 	}
 }

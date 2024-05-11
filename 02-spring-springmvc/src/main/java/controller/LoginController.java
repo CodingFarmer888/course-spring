@@ -18,7 +18,7 @@ import vo.UserVo;
 // @RequestMapping("/user")
 public class LoginController {
 
-	//@RequestMapping(value = "/login")
+	// @RequestMapping(value = "/login")
 	public String login() {
 		String username = "abc1";
 		if (username.equals("abc")) {

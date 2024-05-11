@@ -97,7 +97,11 @@
 		<input type="submit" />
 	</form>
 	
+	<hr/>
 	
+	<a href="setSession">Set Sesstion</a>
+	<br/>
+	<a href="getSession">Get Sesstion</a>
 	
 </body>
 </html>

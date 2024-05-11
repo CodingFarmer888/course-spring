@@ -5,10 +5,11 @@ import java.util.List;
 
 public class GameInfo {
 
+	/** 本次答案 */
 	private String answer;
 	
-	private List<String> guessHistory = new ArrayList<>();
-
+	/** 猜測歷程 */
+	private List<ResultBean> guessHistory = new ArrayList<>();
 
 	public String getAnswer() {
 		return answer;
@@ -18,13 +19,12 @@ public class GameInfo {
 		this.answer = answer;
 	}
 
-	public List<String> getGuessHistory() {
+	public List<ResultBean> getGuessHistory() {
 		return guessHistory;
 	}
 
-	public void setGuessHistory(List<String> guessHistory) {
+	public void setGuessHistory(List<ResultBean> guessHistory) {
 		this.guessHistory = guessHistory;
 	}
-	
-	
+
 }

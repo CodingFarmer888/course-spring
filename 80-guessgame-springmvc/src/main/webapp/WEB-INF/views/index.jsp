@@ -9,18 +9,22 @@
 <body>
 <h1>1A2B 猜數字！</h1>
 
-<a href="newGame">新遊戲</a>
+<form action="newGame">
+	<button type="submit">新遊戲</button>
+</form>
 
+<c:if test="${!hiddenGuessBlock}">
 <form action="guess" method="GET">
 	猜數字：<input type="text" name="guessNum" />
 	<button type="submit">猜答案</button>
 </form>
 
 <ul>
-    <c:forEach var="num" items="${gameHistory}">
-        <li>${num}</li>
+    <c:forEach var="resultBean" items="${gameHistory}">
+        <li>${resultBean.guessNum} ${resultBean.resultDisplay}</li>
     </c:forEach>
 </ul>
+</c:if>
 
 </body>
 </html>

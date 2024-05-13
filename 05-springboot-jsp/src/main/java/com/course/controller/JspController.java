@@ -9,6 +9,6 @@ public class JspController {
 	
 	@RequestMapping("/")
 	public String hello() {
-		return "index.jsp";
+		return "index";
 	}
 }

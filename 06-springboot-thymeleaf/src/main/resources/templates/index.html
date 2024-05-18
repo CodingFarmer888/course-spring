@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 th:text="${title}">我是標題</h1>
+
+<div th:replace="~{fragments/common :: header}"></div>
+
+<table border="1">
+	<tr>
+		<td width="150px">書籍</td>
+		<td width="150px">作者</td>
+		<td>功能</td>
+		<td>功能</td>
+		<td>功能</td>
+		<td>功能</td>
+	</tr>
+	<tr th:each="book: ${books}">
+		<td th:text="${book.name}">書籍</td>
+		<td th:text="${book.author}">作者</td>
+		<td><a th:href="@{/book}">@{/book}</a></td>
+		<td><a href="/book">/book</a></td>
+		<td><a href="book">book</a></td>
+		<td><a th:href="@{/book/{id} (id=${book.id})}">book</a></td>
+	</tr>
+</table>
+
+<div th:replace="~{fragments/common :: footer}"></div>
+
+</body>
+</html>

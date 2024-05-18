@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>書籍明細</h1>
+
+<h3 th:text="${book.name}">書籍名稱</h3>
+<h3 th:text="${book.author}">書籍名稱</h3>
+<img th:src="@{/images/{imageName} (imageName=${book.imgName})}" src="images/mistborn.png">
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

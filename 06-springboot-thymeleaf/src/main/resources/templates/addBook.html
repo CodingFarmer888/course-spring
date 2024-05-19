@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新增書籍</title>
+</head>
+<body>
+
+<form th:action="@{/book}" th:object="${book}" method="POST">
+    <div>
+        <label for="name">書籍名稱:</label>
+        <input type="text" id="name" th:field="*{name}" />
+    </div>
+    <div>
+        <label for="author">作者:</label>
+        <input type="text" id="author" th:field="*{author}" />
+    </div>
+    <div>
+        <label for="imgName">圖檔名稱:</label>
+        <input type="text" id="imgName" th:field="*{imgName}" />
+    </div>
+    <div>
+        <button type="submit">新增書籍</button>
+    </div>
+	
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

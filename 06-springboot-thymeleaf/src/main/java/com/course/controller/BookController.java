@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,10 @@ public class BookController {
 		List<BookVo> bookList = getAllBooks();
 		
 		mv.addObject("books", bookList);
+		
+		mv.addObject("isLogin", false);
+		
+		mv.addObject("username", "Snoopy");
 
 		return mv;
 	}
@@ -53,9 +58,21 @@ public class BookController {
 		return bookList;
 	}
 	
-	@PostMapping("/test")
-	public String test(String name) {
-		System.out.println(name);
-		return "index";
+	@GetMapping("/toAddBookPage")
+	public String toAddBookPage(Model model) {
+		model.addAttribute("book", new BookVo());
+		return "addBook";
+	}
+
+	@PostMapping("/book")
+	public ModelAndView addBook(BookVo book) {
+		
+		System.out.println("Add Book: " + book);
+		List<BookVo> bookList = getAllBooks();
+		bookList.add(book);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		mv.addObject("books", bookList);
+		return mv;
 	}
 }

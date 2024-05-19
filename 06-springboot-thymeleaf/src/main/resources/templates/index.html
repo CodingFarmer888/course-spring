@@ -6,8 +6,14 @@
 </head>
 <body>
 <h1 th:text="${title}">我是標題</h1>
-
 <div th:replace="~{fragments/common :: header}"></div>
+
+<h2 th:unless="${isLogin}">親愛的用戶您好：<span th:text="${username}"></span></h2>
+
+<div th:switch="${username}">
+    <p th:case="'Kitty'">佛殺凱蒂貓</p>
+    <p th:case="'Snoopy'">史奴比</p>
+</div>
 
 <table border="1">
 	<tr>
@@ -27,6 +33,8 @@
 		<td><a th:href="@{/book/{id} (id=${book.id})}">book</a></td>
 	</tr>
 </table>
+
+<a th:href="@{/toAddBookPage}">新增頁面</a>
 
 <div th:replace="~{fragments/common :: footer}"></div>
 

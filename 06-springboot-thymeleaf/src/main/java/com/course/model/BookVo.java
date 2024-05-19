@@ -55,5 +55,10 @@ public class BookVo {
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
 	}
+
+	@Override
+	public String toString() {
+		return "BookVo [id=" + id + ", name=" + name + ", author=" + author + ", imgName=" + imgName + "]";
+	}
 	
 }

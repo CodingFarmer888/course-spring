@@ -1,20 +1,18 @@
 package com.course.model;
 
-import java.util.Date;
+public class TodoVo {
 
-public class TodoItem {
-	
 	/** 鍵值 */
-	private Integer id;
-
+	private Integer id;;
+	
 	/** 標題 */
 	private String title;
 	
 	/** 到期日 */
-	private Date dueDate;
+	private String dueDate;
 	
 	/** 狀態 */
-	private Integer status;
+	private String status;
 
 	public Integer getId() {
 		return id;
@@ -32,19 +30,20 @@ public class TodoItem {
 		this.title = title;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
-	public Integer getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
+
 }

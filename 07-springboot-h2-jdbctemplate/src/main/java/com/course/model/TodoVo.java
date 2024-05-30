@@ -12,7 +12,10 @@ public class TodoVo {
 	private String dueDate;
 	
 	/** 狀態 */
-	private String status;
+	private Integer status;
+	
+	/** 狀態 */
+	private String statusDisp;
 
 	public Integer getId() {
 		return id;
@@ -38,12 +41,19 @@ public class TodoVo {
 		this.dueDate = dueDate;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
+	public String getStatusDisp() {
+		return statusDisp;
+	}
+
+	public void setStatusDisp(String statusDisp) {
+		this.statusDisp = statusDisp;
+	}
 }

@@ -12,7 +12,7 @@ public interface TodoDao {
 	
 	void insert(TodoItem todoItem);
 	
-	void update(TodoItem todoItem);
+	Integer update(TodoItem todoItem);
 	
-	void delete(TodoItem todoItem);
+	Integer delete(Integer id);
 }

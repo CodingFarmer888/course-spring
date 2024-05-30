@@ -20,6 +20,10 @@ public class TodoController {
 	@Autowired
 	private TodoService todoService;
 
+	/**
+	 * 首頁，查詢所有代辦事項
+	 * @return
+	 */
 	@GetMapping("/")
 	public ModelAndView home() {
 
@@ -49,6 +53,11 @@ public class TodoController {
 		return "redirect:/";
 	}
 	
+	/**
+	 * 轉導至編輯頁
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/toEditPage/{id}")
 	public ModelAndView toEditPage(@PathVariable Integer id) {
 		TodoVo vo = todoService.getTodoById(id);
@@ -56,6 +65,29 @@ public class TodoController {
 		mv.setViewName("editTodo");
 		mv.addObject("todo", vo);
 		return mv;
+	}
+	
+	/**
+	 * 更新代辦事項
+	 * @param todoVo
+	 * @return
+	 */
+	@PostMapping("/editTodo")
+	public String editTodo(TodoVo todoVo) {
+		todoService.updateTodo(todoVo);
+		// 新增完畢後，轉導至首頁，避免refresh重送新增
+		return "redirect:/";
+	}
+	
+	/**
+	 * 刪除代辦事項
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/delete/{id}")
+	public String deleteTodo(@PathVariable Integer id) {
+		todoService.deleteById(id);
+		return "redirect:/";
 	}
 	
 }

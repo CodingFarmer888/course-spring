@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"name", "author"})
+@EqualsAndHashCode
 public class Book {
 
 	private String name;

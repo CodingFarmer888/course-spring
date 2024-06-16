@@ -3,6 +3,8 @@ package com.course.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -62,19 +64,15 @@ public interface TodoQueryRepository extends JpaRepository<Todo, Long> {
 	
 	//====================== @Query =========================
 	
-	// SQL語句：select * from todo where status = 1 
 	@Query("select t from Todo t where t.status = 1")
 	List<Todo> getAllCompleteList();
 	
-	// SQL語句：select * from todo where status = ? and due_date <= ?
 	@Query("select t from Todo t where t.status = ?1 and t.dueDate <= ?2 ")
 	List<Todo> getListByCondition(Integer statue, Date dueDate);
 	
-	// SQL語句：select * from todo where status = ? and due_date <= ?
 	@Query("select t from Todo t where t.status = :status and t.dueDate <= :dueDate ")
 	List<Todo> getListByConditionNamed(@Param("status") Integer statue, @Param("dueDate") Date dueDate);
 	
-	// SQL語句：select * from todo where status = ? and due_date <= ?
 	@Query(nativeQuery = true, value = "SELECT * FROM TODO T WHERE T.STATUS = :status AND T.DUE_DATE <= :dueDate ")
 	List<Todo> getListByConditionNativeSql(@Param("status") Integer statue, @Param("dueDate") Date dueDate);
 	
@@ -83,4 +81,9 @@ public interface TodoQueryRepository extends JpaRepository<Todo, Long> {
 	@Query("update Todo set title = ?2 where id = ?1")
 	Integer updateTodo(Long id, String title);
 	
+	//====================== Pagination =========================
+	Page<Todo> findByStatus(Integer status, Pageable pageable);
+	
+	@Query("select t from Todo t where t.status = ?1 and t.dueDate <= ?2 ")
+	Page<Todo> getListByCondition(Integer statue, Date dueDate, Pageable pageable);
 }

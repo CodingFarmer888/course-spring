@@ -2,12 +2,14 @@ package com.course.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -246,6 +248,13 @@ public class TodoService {
 		Sort sort = Sort.by(Sort.Order.asc("dueDate"), Sort.Order.desc("title"));
 		List<Todo> todoList = todoRepository.findAll(sort);
 		return convertVoList(todoList);
+	}
+	
+	public Page<TodoVo> pagination(Integer pageNumber, Integer pageSize) {
+		// pageNumber: 當前頁碼 , pageSize: 每頁數量
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<Todo> page = todoRepository.findAll(pageable);
+		return page.map(todo -> convertToVo(todo));
 	}
 	
 	

@@ -1,9 +1,17 @@
 package com.course.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Book {
@@ -15,6 +23,14 @@ public class Book {
 	private String name;
 	
 	private String author;
+	
+	@JsonIgnore
+    @OneToOne(mappedBy = "book",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private BookDetail bookDetail;
+    
+    @JsonIgnore
+    @ManyToMany(mappedBy = "books")
+    private List<Library> libraries = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -38,6 +54,22 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public BookDetail getBookDetail() {
+		return bookDetail;
+	}
+
+	public void setBookDetail(BookDetail bookDetail) {
+		this.bookDetail = bookDetail;
+	}
+
+	public List<Library> getLibraries() {
+		return libraries;
+	}
+
+	public void setLibraries(List<Library> libraries) {
+		this.libraries = libraries;
 	}
 
 }

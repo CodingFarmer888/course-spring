@@ -1,6 +1,7 @@
 package com.course.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -30,6 +33,14 @@ public class Library {
     @ManyToOne
     @JoinColumn(name = "CITY_CODE", referencedColumnName = "CODE", insertable = false, updatable = false)
     private City city;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "library_book", 
+        joinColumns = @JoinColumn(name = "library_id"), 
+        inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> books = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -69,6 +80,14 @@ public class Library {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 }

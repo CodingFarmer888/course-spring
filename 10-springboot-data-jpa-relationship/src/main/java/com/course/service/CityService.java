@@ -10,10 +10,12 @@ import com.course.repository.CityRepository;
 
 @Service
 public class CityService {
+	
 	@Autowired
 	private CityRepository cityRepository;
 
 	public List<City> getAllCity() {
 		return cityRepository.findAll();
 	}
+	
 }

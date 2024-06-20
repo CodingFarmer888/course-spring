@@ -21,23 +21,20 @@ public class LibraryController {
 	@Autowired
 	private LibraryService libraryService;
 	
-	@Autowired
-	private CityService cityService;
-	
 	@GetMapping("/code/{code}")
 	public Library getLibraryByCode(@PathVariable String code) {
 		
 		return libraryService.getLibraryByCode(code);
 	}
 	
-	@GetMapping("/city")
-	public List<City> getAllCity() {
-		return cityService.getAllCity();
-	}
-	
 	@PostMapping("/{libraryCode}/book/{bookId}")
 	public Library addBookToLibrary(@PathVariable String libraryCode, @PathVariable Long bookId) {
 		return libraryService.addBookToLibrary(libraryCode, bookId);
+	}
+	
+	@PostMapping("/")
+	public Library addLibrary(String code, String name, String cityCode) throws Exception {
+		return libraryService.addLibrary(code, name, cityCode);
 	}
 
 }

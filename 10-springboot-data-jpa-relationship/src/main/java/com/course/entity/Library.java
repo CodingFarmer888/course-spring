@@ -20,7 +20,7 @@ public class Library {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	/** 圖書館代號*/
+	/** 圖書館代號 */
 	private String code;
 	
 	/** 名稱 */

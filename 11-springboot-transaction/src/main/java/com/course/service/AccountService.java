@@ -1,5 +1,6 @@
 package com.course.service;
 
+import java.io.FileInputStream;
 import java.math.BigDecimal;
 
 import org.slf4j.Logger;
@@ -34,6 +35,11 @@ public class AccountService {
 			
 			payerAccount.setBalance(payerAccount.getBalance().subtract(amount));
 			accountRepository.save(payerAccount);
+			
+			// 觸發 RuntimeException
+			// Integer.parseInt("abc");
+			// 強制觸發 Checked Exception
+			FileInputStream fileInputStream = new FileInputStream("non_existent_file.txt");
 			// 在有可能出錯的時候，總是會出錯
 			payeeAccount.setBalance(payeeAccount.getBalance().add(amount));
 			accountRepository.save(payeeAccount);

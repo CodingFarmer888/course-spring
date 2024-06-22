@@ -32,8 +32,9 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = {ActionException.class})
-    public ResponseEntity<String> handleActionException(ActionException e) {
+    public ResponseEntity<ActionException> handleActionException(ActionException e) {
      	logger.error("我是ActionException");
-        return new ResponseEntity<>("ActionException例外: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        // return new ResponseEntity<>("ActionException例外: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+     	return ResponseEntity.internalServerError().body(e);
     }
 }

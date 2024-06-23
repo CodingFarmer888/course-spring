@@ -21,7 +21,8 @@ public class AccountService {
 	@Autowired
 	private AccountRepository accountRepository;
 
-	@Transactional
+	// 所有異常都需要 Rollback(預設只有RuntimeException會Rollbackk)
+	@Transactional(rollbackFor = {Exception.class}, timeout = 10000)
 	public Account transferMoney(String payerAccountNo, String payeeAccountNo, BigDecimal amount) throws Exception {
 		Account payerAccount = accountRepository.findByAccountNo(payerAccountNo);
 		
@@ -39,7 +40,7 @@ public class AccountService {
 			// 觸發 RuntimeException
 			// Integer.parseInt("abc");
 			// 強制觸發 Checked Exception
-			FileInputStream fileInputStream = new FileInputStream("non_existent_file.txt");
+			// FileInputStream fileInputStream = new FileInputStream("non_existent_file.txt");
 			// 在有可能出錯的時候，總是會出錯
 			payeeAccount.setBalance(payeeAccount.getBalance().add(amount));
 			accountRepository.save(payeeAccount);

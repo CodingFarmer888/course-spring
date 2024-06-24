@@ -23,5 +23,12 @@ public class AccountController {
 		Account payerAccount = accountService.transferMoney(payerAccountNo, payeeAccountNo, amount);
 		return ResponseEntity.ok(payerAccount);
 	}
+	
+	@PostMapping("/transferMoneyInnerInvoke")
+	public ResponseEntity<Account> transferMoneyInnerInvoke(@RequestParam String payerAccountNo, @RequestParam String payeeAccountNo, @RequestParam String amountStr) throws Exception {
+		BigDecimal amount = new BigDecimal(amountStr);
+		Account payerAccount = accountService.transferMoneyInnerInvoke(payerAccountNo, payeeAccountNo, amount);
+		return ResponseEntity.ok(payerAccount);
+	}
 
 }

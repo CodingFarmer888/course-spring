@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.course</groupId>
-	<artifactId>06-springboot-aop</artifactId>
+	<artifactId>72-springboot-aop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>06-springboot-aop</name>
+	<name>72-springboot-aop</name>
 	<description>Spring Aop </description>
 	<properties>
 		<java.version>17</java.version>

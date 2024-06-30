@@ -1,8 +1,11 @@
 package com.course.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course.dto.LibraryDto;
 import com.course.entity.Book;
 import com.course.entity.City;
 import com.course.entity.Library;
@@ -45,6 +48,10 @@ public class LibraryService {
 		entity.setName(name);
 		entity.setCityCode(cityCode);
 		return libraryRepository.save(entity);
-		
+	}
+	
+	public List<LibraryDto> getLibraryInCity(String city) {
+		String keyword = "%" + city + "%";
+		return libraryRepository.getLibraryInCity(keyword);
 	}
 }

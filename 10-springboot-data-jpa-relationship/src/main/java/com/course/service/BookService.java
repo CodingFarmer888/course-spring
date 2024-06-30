@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.course.dto.BookDto;
 import com.course.entity.Book;
 import com.course.entity.BookDetail;
+import com.course.repository.BookCustomRepository;
 import com.course.repository.BookRepository;
 import com.course.vo.BookVo;
 
@@ -17,6 +19,9 @@ public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private BookCustomRepository bookCustomRepository;
 	
 	public List<BookVo> getAllBook() {
 		
@@ -66,4 +71,10 @@ public class BookService {
         
         return book;
 	}
+	
+	public List<BookDto> searchBook(String keyword) {
+		String searchKeyword = "%" + keyword + "%";
+		return bookCustomRepository.searchBook(searchKeyword);
+	}
+	
 }

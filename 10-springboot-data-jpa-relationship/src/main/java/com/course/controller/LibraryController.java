@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.course.entity.City;
+import com.course.dto.LibraryDto;
 import com.course.entity.Library;
-import com.course.service.CityService;
 import com.course.service.LibraryService;
 
 @RestController
@@ -35,6 +34,11 @@ public class LibraryController {
 	@PostMapping("/")
 	public Library addLibrary(String code, String name, String cityCode) throws Exception {
 		return libraryService.addLibrary(code, name, cityCode);
+	}
+	
+	@GetMapping("/city/{city}")
+	public List<LibraryDto> getLibrary(String city) {
+		return libraryService.getLibraryInCity(city);
 	}
 
 }

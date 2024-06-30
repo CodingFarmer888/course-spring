@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.course.dto.BookDto;
 import com.course.service.BookService;
 import com.course.vo.BookVo;
 
@@ -28,4 +30,10 @@ public class BookController {
 	public BookVo addBook(@RequestBody BookVo bookVo) {
 		return bookService.addBook(bookVo);
 	}
+	
+	@GetMapping("/search/{keyword}")
+	public List<BookDto> searchBook(@PathVariable String keyword) {
+		return bookService.searchBook(keyword);
+	}
+
 }

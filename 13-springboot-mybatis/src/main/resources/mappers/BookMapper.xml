@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.course.mapper.BookMapper">
+    
+    <!-- 條件查詢 -->
+    <select id="findByCondition" resultType="com.course.vo.BookVo">
+		SELECT 
+		b.name as name,
+		b.author as author,
+		l.name as libraryName
+		FROM library l
+		JOIN library_book lb ON lb.library_id = l.id
+		JOIN book b ON b.id = lb.book_id
+		WHERE l.id IS NOT NULL
+	    <if test="name != null and name !='' ">
+	        AND b.name = #{name}
+	    </if>
+    </select>
+    
+    <select id="findByChoose" resultType="com.course.vo.BookVo">
+		SELECT 
+		b.name as name,
+		b.author as author,
+		l.name as libraryName
+		FROM library l
+		JOIN library_book lb ON lb.library_id = l.id
+		JOIN book b ON b.id = lb.book_id
+		WHERE l.id IS NOT NULL
+        <choose>
+	        <when test="name != null and name !='' ">
+	            AND b.name = #{name}
+	        </when>
+	
+	        <when test="author != null and author != '' ">
+	            AND b.author = #{author}
+	        </when>
+	        <otherwise>
+	            AND b.name = '鬼滅之刃'
+	        </otherwise>
+	    </choose>
+    </select>
+    
+    <select id="findByWhere" resultType="com.course.vo.BookVo">
+		SELECT 
+		b.name as name,
+		b.author as author,
+		l.name as libraryName
+		FROM library l
+		JOIN library_book lb ON lb.library_id = l.id
+		JOIN book b ON b.id = lb.book_id
+		<where>
+	        <if test="name != null and name !='' ">
+	            AND b.name = #{name}
+	        </if>
+	        
+   	        <if test="author != null and author != '' ">
+	            OR b.author = #{author}
+	        </if>
+		</where>
+    </select>
+    
+    <select id="findByNames" resultType="com.course.vo.BookVo">
+		SELECT 
+		b.name as name,
+		b.author as author,
+		l.name as libraryName
+		FROM library l
+		JOIN library_book lb ON lb.library_id = l.id
+		JOIN book b ON b.id = lb.book_id
+	    <where>
+	        <foreach collection="names" item="name" open="b.name in (" separator="," close=")" >
+	            #{name}
+	        </foreach>
+	    </where>
+	</select>
+	
+	<update id="updateByCondition" parameterType="com.course.vo.BookVo">
+		UPDATE book
+	    <set>
+	        <if test="name != null and name !='' ">name = #{name},</if>
+	        <if test="author != null and author != '' ">author = #{author},</if>
+	    </set>
+	    WHERE id = #{id}
+	</update>
+	
+</mapper>

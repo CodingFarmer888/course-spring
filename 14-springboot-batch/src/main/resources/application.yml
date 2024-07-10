@@ -11,6 +11,3 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: none
-  batch:
-    jdbc:
-      initialize-schema: ALWAYS

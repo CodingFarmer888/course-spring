@@ -11,6 +11,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
+import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
@@ -49,6 +50,15 @@ public class CsvToDbBatchConfiguration {
 		
 		// 設定 LineMapper，定義資料行當中的如何映射
 		itemReader.setLineMapper(getLineMapper());
+		
+		
+//		ItemReader<Person> itemReaderByBuilder = new FlatFileItemReaderBuilder<Person>()
+//				.name("csv-reader")
+//				.resource(new ClassPathResource("sample-data.csv"))
+//				.encoding("UTF-8")
+//				.linesToSkip(1)
+//				.lineMapper(getLineMapper())
+//				.build();
 
 		return itemReader;
 	}
@@ -111,9 +121,10 @@ public class CsvToDbBatchConfiguration {
 
 	@Bean
 	Job personJob(JobRepository jobRepository, Step step1, Step step2) {
-		return new JobBuilder("job1", jobRepository)
+		return new JobBuilder("personJob", jobRepository)
 				.start(step1)
-				.next(step2)
+//				.next(step2)
 				.build();
 	}
+
 }

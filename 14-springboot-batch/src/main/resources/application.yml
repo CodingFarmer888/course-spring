@@ -11,3 +11,7 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: none
+  batch:
+    job:
+      name: personJob
+      enabled: true

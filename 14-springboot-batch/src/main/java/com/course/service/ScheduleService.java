@@ -10,7 +10,7 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +24,7 @@ public class ScheduleService {
 	private JobLauncher jobLauncher;
 	
 	@Autowired
+	@Qualifier("personJob")
 	private Job job;
 	
 	/**
@@ -51,7 +52,7 @@ public class ScheduleService {
 		logger.info("Cron Task: " + dateFormat.format(new Date()));
 	}
 	
-	@Scheduled(cron = "0/10 * * * * ?")
+	// @Scheduled(cron = "0/10 * * * * ?")
 	public void executeJobLauncherTask() throws Exception {
 		logger.info("Cron Task: " + dateFormat.format(new Date()));
 		JobParameters jobParams = new JobParametersBuilder()

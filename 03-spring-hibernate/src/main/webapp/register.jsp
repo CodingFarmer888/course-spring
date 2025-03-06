@@ -9,7 +9,7 @@
 <body>
 <h1>註冊</h1>
 
-<form action="resiger">
+<form action="register">
 	帳號：<input type="text" name="username" />
 	<br/>
 	密碼：<input type="text" name="password" />

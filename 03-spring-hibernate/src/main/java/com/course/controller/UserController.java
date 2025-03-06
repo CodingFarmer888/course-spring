@@ -28,8 +28,8 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/resiger")
-	public String resiger(@RequestParam("username") String username, @RequestParam("password") String password) {
+	@RequestMapping("/register")
+	public String register(@RequestParam("username") String username, @RequestParam("password") String password) {
 		userService.addUser(username, password);
 		return "registerSuccess";
 	}
@@ -56,7 +56,7 @@ public class UserController {
 	
 	@RequestMapping("/updateUser")
 	public ModelAndView updateUser(String username, String password) {
-		// 刪除使用者
+		// 更新使用者
 		userService.updateUser(username, password);
 		
 		// 轉導回使用者列表頁
